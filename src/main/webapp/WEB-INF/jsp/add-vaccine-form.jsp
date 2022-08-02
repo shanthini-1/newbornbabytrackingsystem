@@ -1,63 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="addform" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add vaccine form</title>
 </head>
 <body>
-	<div id="root">
+		<div id="root">
 		<div id="form">
-			<form:form action="addvaccines" method="post" modelAttribute="addvaccine">
+			<addform:form action="addvaccines" method="post" modelAttribute="addvaccine">
 				<div>
-					<label for="vaccine_id">Vaccine Id</label>
+					<label for="vaccineId">Vaccine Id</label>
 				</div>
 				<div>
-					<form:input path="vaccine_id" />
+					<addform:input path="vaccineId" />
 				</div>
 				<div>
 					<label for="week">Week</label>
 				</div>
 				<div>
-					<form:input path="week" />
+					<addform:input path="week" />
 				</div>
 				<div>
-					<label for="vaccine_name">Vaccine Name </label>
+					<label for="vaccineName">Vaccine Name </label>
 					</div>
 					<div>
-					<form:input path="vaccine_name"/>
+					<addform:input path="vaccineName"/>
 					</div>
 					<div>
-					<label for="vac_description">Description</label>
+					<label for="vacDescription">Description</label>
 					</div>
 					<div>
-					<form:input path="vac_description"/>
+					<addform:input path="vacDescription"/>
 					</div>
 					<div>
 					<label for="dosage">Dosage</label>
 					</div>
 					<div>
-					<form:input path="dosage"/>
+					<addform:input path="dosage"/>
 					</div>
 					<div>
 					<label for="suggestion">Suggestion</label>
 					</div>
 					<div>
-					<form:input path="suggestion"/>
+					<addform:input path="suggestion"/>
 					</div>
 					<div>
-					<label for="vaccine_price">Vaccine price</label>
+					<label for="vaccinePrice">Vaccine price</label>
 					</div>
 					<div>
-					<form:input path="vaccine_price"/>
+					<addform:input path="vaccinePrice"/>
 					</div>
 					<div>
-					<form:button>Add Vaccine</form:button></div>
-			</form:form>
+					<addform:button>Add Vaccine</addform:button></div>
+			</addform:form>
 		</div>
 	</div>
 </body>

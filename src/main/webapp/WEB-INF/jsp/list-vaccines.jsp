@@ -25,13 +25,13 @@
 				<tbody>
 					<c:forEach var="vac" items="${allvaccines}">
 						<tr>
-							<td>${vac.vaccine_id}</td>
-							<td>${vac.vaccine_name}</td>
+							<td>${vac.vaccineId}</td>
+							<td>${vac.vaccineName}</td>
 							<td>${vac.week}</td>
-							<td>${vac.vac_description}</td>
+							<td>${vac.vacDescription}</td>
 							<td>${vac.dosage}</td>
 							<td>${vac.suggestion}</td>
-							<td>${vac.vaccine_price}</td>
+							<td>${vac.vaccinePrice}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

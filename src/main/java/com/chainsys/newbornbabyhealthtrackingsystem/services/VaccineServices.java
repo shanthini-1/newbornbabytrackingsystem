@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chainsys.newbornbabyhealthtrackingsystem.pojo.Vaccine;
+import com.chainsys.newbornbabyhealthtrackingsystem.model.Vaccine;
 import com.chainsys.newbornbabyhealthtrackingsystem.repository.VaccineRepository;
 
 /**
@@ -18,16 +18,29 @@ import com.chainsys.newbornbabyhealthtrackingsystem.repository.VaccineRepository
 @Service
 public class VaccineServices {
 	@Autowired
-	private VaccineRepository vacrepo ;
+	private VaccineRepository vacRepo ;
 	
 	
 	public Vaccine addVaccine(Vaccine vac) {
-		return vacrepo.save(vac);
+		return vacRepo.save(vac);
 	}
 
-
-	public List<Vaccine> getvaccines() {
-		List<Vaccine> vacclist = vacrepo.findAll();
-		return vacclist;
+	public void removeVaccine(int vacId) {
+		vacRepo.deleteById(vacId);
 	}
+	
+	public List<Vaccine> getVaccines() {
+		List<Vaccine> vaccList = vacRepo.findAll();
+		return vaccList;
+	}
+
+	public void removeVaccineById(int id) {
+			vacRepo.deleteById(id);
+	}
+
+	public Vaccine getVaccinesById(int id) {
+		return 	vacRepo.findByVaccineId(id);
+	}
+	
+
 }
