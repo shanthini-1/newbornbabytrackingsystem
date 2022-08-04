@@ -28,7 +28,9 @@ public class Person {
 	private Date userDob;
 	@Column(name = "GENDER")
 	private String gender;
-	@Column(name = "PHONE_NUMBER")
+	@Column(name="PERSON_CATEGORY")
+	private String personCategory;
+	@Column(name = "PHONE_NO")
 	private long phoneNumber;
 	@Column(name = "PASS_WORD")
 	private String passWord;
@@ -36,6 +38,8 @@ public class Person {
 	private String doorNumber;
 	@Column(name = "STREET")
 	private String street;
+	@Column(name = "CITY")
+	private String city;
 	@Column(name = "PIN_CODE")
 	private int pinCode;
 
@@ -79,6 +83,14 @@ public class Person {
 		this.gender = gender;
 	}
 
+	public String getPersonCategory() {
+		return personCategory;
+	}
+
+	public void setPersonCategory(String personCategory) {
+		this.personCategory = personCategory;
+	}
+
 	public long getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -111,6 +123,14 @@ public class Person {
 		this.street = street;
 	}
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	public int getPinCode() {
 		return pinCode;
 	}
@@ -120,7 +140,7 @@ public class Person {
 	}
 
 	public String toString() {
-		return String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%d", userId, userName, userDob, gender, email, passWord,
-				phoneNumber, doorNumber, street, pinCode);
+		return String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d", userId, userName, userDob, gender, email, passWord,
+				phoneNumber, doorNumber, street,city, pinCode);
 	}
 }

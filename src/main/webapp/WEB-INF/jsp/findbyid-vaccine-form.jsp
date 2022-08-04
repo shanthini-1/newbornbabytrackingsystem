@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>find Doctor</title>
+<title>find Vaccine</title>
 </head>
 <body>
 	<div id="root">
 		<div id="form">
-		<viewform:form action="getvaccine" method="get" modelAttribute="findvaccinebyid">
+		<viewform:form action="" method="get" modelAttribute="findvaccinebyid">
 			<div>
 				<label for="vaccineId">Vaccine Id</label>
 			</div>

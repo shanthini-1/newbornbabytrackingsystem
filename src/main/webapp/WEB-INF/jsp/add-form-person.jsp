@@ -13,7 +13,7 @@
 	<div id="root">
 		<div id="form">
 			<addpersonform:form action="addpersons" method="post"
-				modelAttribute="addperson">
+				modelAttribute="addPerson">
 				<div>
 					<label for="userId">User Id</label>
 				</div>
@@ -37,6 +37,12 @@
 				</div>
 				<div>
 					<addpersonform:input path="gender" />
+				</div>
+				<div>
+					<label for="personCategory">Person Category</label>
+				</div>
+				<div>
+					<addpersonform:input path="personCategory" />
 				</div>
 				<div>
 					<label for="email">Email</label>
@@ -63,13 +69,20 @@
 					<addpersonform:input path="street" />
 				</div>
 				<div>
+					<label for="city">city</label>
+				</div>
+				<div>
+					<addpersonform:input path="city" />
+				</div>
+				<div>
 					<label for="pinCode">Pin Code</label>
 				</div>
 				<div>
 					<addpersonform:input path="pinCode" />
 				</div>
+				<!-- add location data filled automatically when pin code entered in html (city,district,state,country) -->
 				<div>
-					<label for="passWord">Pass Word</label>
+					<label for="passWord">Password</label>
 				</div>
 				<div>
 					<addpersonform:input path="passWord" />

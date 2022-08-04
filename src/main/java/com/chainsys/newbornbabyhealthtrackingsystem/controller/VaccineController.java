@@ -26,55 +26,54 @@ import com.chainsys.newbornbabyhealthtrackingsystem.services.VaccineServices;
 public class VaccineController {
 	@Autowired
 	private VaccineServices vacServices;
-	
-	@GetMapping("/")
-	public String index(){
-		return "index";
-}
-	
-	@GetMapping("/vaccinelist")
+
+	/*
+	 * @GetMapping("/") public String index() { return "index"; }
+	 */
+
+	@GetMapping("/listallvaccines")
 	public String getVaccines(Model model) {
 		List<Vaccine> vaclist = vacServices.getVaccines();
 		model.addAttribute("allvaccines", vaclist);
 		return "list-vaccines";
 	}
-	
-	@GetMapping("/getvaccine")
+
+	@GetMapping("/fetchvaccine")
 	public String getVaccineById(@RequestParam("id") int id, Model model) {
 		Vaccine theVac = vacServices.getVaccinesById(id);
 		model.addAttribute("findvaccinebyid", theVac);
 		return "findbyid-vaccine-form";
 	}
-	
+
 	@GetMapping("/vaccineaddform")
 	public String showVaccineAddForm(Model model) {
 		Vaccine theVac = new Vaccine();
-		model.addAttribute("addvaccine",theVac);
+		model.addAttribute("addvaccine", theVac);
 		return "add-vaccine-form";
-		}
-	
+	}
+
 	@PostMapping("/addvaccines")
 	public String addNewVaccines(@ModelAttribute("addvaccine") Vaccine theVac) {
 		vacServices.addVaccine(theVac);
 		return "redirect:/admin/vaccine/vaccinelist";
 	}
-	
-	@GetMapping("/vaccineupdateform")
+
+	@GetMapping("/vaccinemodifyform")
 	public String showVaccineUpdateForm(@RequestParam("id") int id, Model model) {
-		Vaccine theVac =vacServices.getVaccinesById(id);
+		Vaccine theVac = vacServices.getVaccinesById(id);
 		model.addAttribute("modifyvaccine", theVac);
 		return "update-vaccine-form";
 	}
-		
+
 	@PostMapping("/modifyvaccine")
 	public String modifyingVaccine(@ModelAttribute("modifyvaccine") Vaccine theVac) {
 		vacServices.addVaccine(theVac);
 		return "redirect:/admin/vaccine/vaccinelist";
 	}
-	
+
 	@GetMapping("/vaccinedeleteform")
 	public String showVaccineDeleteForm(@RequestParam("id") int id, Model model) {
-		vacServices.removeVaccineById(id);
+		vacServices.removeVaccine(id);
 		return "redirect:/admin/vaccine/vaccinelist";
 	}
-	}
+}

@@ -13,7 +13,7 @@ import com.chainsys.newbornbabyhealthtrackingsystem.repository.PersonRepository;
 
 /**
  * @author shan3102
- *
+ * @date 02-aug-2022
  */
 @Service
 public class PersonServices {
@@ -23,5 +23,20 @@ public class PersonServices {
 	public List<Person> getPersons() {
 		return personRepo.findAll();
 	}
+
+	public Person addPerson(Person thePerson) {
+		return personRepo.save(thePerson);		
+	}
+
+	public void removePerson(int personId) {
+		personRepo.deleteById(personId);
+	}
+
+	public Person getPersonById(int personId) {
+		return personRepo.findByUserId(personId);
+	}
+
+
+	
 
 }

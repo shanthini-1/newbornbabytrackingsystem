@@ -34,10 +34,6 @@ public class VaccineServices {
 		return vaccList;
 	}
 
-	public void removeVaccineById(int id) {
-			vacRepo.deleteById(id);
-	}
-
 	public Vaccine getVaccinesById(int id) {
 		return 	vacRepo.findByVaccineId(id);
 	}

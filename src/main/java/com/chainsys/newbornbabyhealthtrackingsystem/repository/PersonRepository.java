@@ -14,7 +14,7 @@ import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
  *
  */
 public interface PersonRepository extends CrudRepository<Person, Integer> {
-	Person findById(int id);
+	Person findByUserId(int id);
 
 	Person save(Person prsn);
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>List of vaccine</title>
+<title>List of Person with location</title>
 </head>
 <body>
 	<div id="root">
@@ -17,36 +17,29 @@
 						<th>User Name</th>
 						<th>User Dob</th>
 						<th>Gender</th>
+						<th>Person Category</th>
 						<th>Email</th>
 						<th>Phone Number</th>
 						<th>Door Number</th>
 						<th>Street</th>
-						<th>District</th>
-						<th>State</th>
-						<th>Country</th>
+						<th>City</th>
 						<th>Pin Code</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="person" items="${listallpersons}">
+					<c:forEach var="person" items="${listAllPersons}">
 						<tr>
 							<td>${person.userId}</td>
 							<td>${person.userName}</td>
 							<td>${person.userDob}</td>
 							<td>${person.gender}</td>
+							<td>${person.personCategory}</td>
 							<td>${person.email}</td>
 							<td>${person.phoneNumber}</td>
 							<td>${person.doorNumber}</td>
 							<td>${person.street}</td>
-							<td>${person.pincode}</td>
-						</tr>
-					</c:forEach>
-					<c:forEach var="location" items="${listallpersonslocation}">
-						<tr>
-							<td>${location.district}</td>
-							<td>${location.stateName}</td>
-							<td>${location.country}</td>
-							<td>${location.pincode}</td>
+							<td>${person.city}</td>
+							<td>${person.pinCode}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

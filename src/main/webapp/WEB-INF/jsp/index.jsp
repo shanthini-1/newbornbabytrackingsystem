@@ -21,18 +21,182 @@
 					name="submit">
 			</form>
 		<li>
-			<form action="/admin/vaccine/vaccineupdateform" method="get">
+			<form action="/admin/vaccine/vaccinemodifyform" method="get">
 				<label>enter id </label> <input type="text" placeholder="vaccine id"
 					name="id"> <input type='submit' value="update"
 					name="submit">
 			</form>
 		<li>
-			<form action="/admin/vaccine/getvaccine" method="get">
+			<form action="/admin/vaccine/fetchvaccine" method="get">
 				<label>enter id </label> <input type="text" placeholder="vaccine id"
 					name="id"> <input type='submit' value="fetch" name="submit">
 			</form>
-		<li><a href="/admin/vaccine/vaccinelist">list of vaccine </a>
+		<li><a href="/admin/vaccine/listallvaccines">list of vaccine </a>
 	</ul>
-	<a></a>
+	<ul>
+		<li>
+			<h1>Vaccination Schedular</h1>
+		<li><a href="/admin/vaccinationschedular/vaccinationschedularaddform">add vaccination schedular </a>
+		<li>
+			<form action="/admin/vaccinationschedular/vaccinationschedulardeleteform" method="get">
+				<label>enter id </label> <input type="text" placeholder="vaccine id"
+					name="id"> <input type='submit' value="delete"
+					name="submit">
+			</form>
+		<li>
+			<form action="/admin/vaccinationschedular/vaccinationschedularmodifyform" method="get">
+				<label>enter id </label> <input type="text" placeholder="vaccine id"
+					name="id"> <input type='submit' value="update"
+					name="submit">
+			</form>
+		<li>
+			<form action="/admin/vaccinationschedular/fetchvaccinationschedular" method="get">
+				<label>enter id </label> <input type="text" placeholder="vaccine id"
+					name="id"> <input type='submit' value="fetch" name="submit">
+			</form>
+		<li><a href="/admin/vaccinationschedular/listallvaccinationschedulars">list of vaccination schedular </a>
+	</ul>
+	<ul>
+		<li>
+			<h1>Vaccination status</h1>
+		<li><a href="/admin/vaccinationstatus/vaccinationstatusaddform">add vaccination status </a>
+		<li>
+			<form action="/admin/vaccinationstatus/vaccinationstatusdeleteform" method="get">
+				<label>enter id </label> <input type="text" placeholder="vaccine id"
+					name="id"> <input type='submit' value="delete"
+					name="submit">
+			</form>
+		<li>
+			<form action="/admin/vaccinationstatus/vaccinationstatusupdateform" method="get">
+				<label>enter id </label> <input type="text" placeholder="vaccine id"
+					name="id"> <input type='submit' value="update"
+					name="submit">
+			</form>
+		<li>
+			<form action="/admin/vaccinationstatus/fetchvaccination" method="get">
+				<label>enter id </label> <input type="text" placeholder="vaccine id"
+					name="id"> <input type='submit' value="fetch" name="submit">
+			</form>
+		<li><a href="/admin/vaccinationstatus/listallvaccinationstatus">list of vaccination status </a>
+	</ul>
+	<ul>
+		<li>
+			<h1>Location</h1>
+		<li><a href="/admin/location/addlocationform">add location </a>
+		<li>
+			<form action="/admin/location/locationdeleteform" method="get">
+				<label>enter id </label> <input type="text" placeholder="pin code"
+					name="id"> <input type='submit' value="delete"
+					name="submit">
+			</form>
+		<li>
+			<form action="/admin/location/locationmodifyform" method="get">
+				<label>enter id </label> <input type="text" placeholder="pin code"
+					name="id"> <input type='submit' value="update"
+					name="submit">
+			</form>
+		<li>
+			<form action="/admin/location/fetchlocation" method="get">
+				<label>enter id </label> <input type="text" placeholder="pin code"
+					name="id"> <input type='submit' value="fetch" name="submit">
+			</form>
+		<li><a href="/admin/location/listalllocations">list of
+				locations </a>
+	</ul>
+	<ul>
+		<li>
+			<h1>Person</h1>
+		<li><a href="/user/person/addpersonform">add Person </a>
+		<li>
+			<form action="/user/person/persondeleteform" method="get">
+				<label>enter id </label> <input type="text" placeholder="user id"
+					name="id"> <input type='submit' value="delete"
+					name="submit">
+			</form>
+		<li>
+			<form action="/user/person/personmodifyform" method="get">
+				<label>enter id </label> <input type="text" placeholder="user id"
+					name="id"> <input type='submit' value="update"
+					name="submit">
+			</form>
+		<li>
+			<form action="/user/person/fetchperson" method="get">
+				<label>enter id </label> <input type="text" placeholder="user id"
+					name="id"> <input type='submit' value="fetch" name="submit">
+			</form>
+		<li><a href="/user/person/listallpersons">list of person </a>
+	</ul>
+	<ul>
+		<li>
+			<h1>Child</h1>
+		<li><a href="/admin/child/addchildform">add child </a>
+		<li>
+			<form action="/admin/child/childdeleteform" method="get">
+				<label>enter id </label> <input type="text" placeholder="child id"
+					name="id"> <input type='submit' value="delete"
+					name="submit">
+			</form>
+		<li>
+			<form action="/admin/child/childmodifyform" method="get">
+				<label>enter id </label> <input type="text" placeholder="child id"
+					name="id"> <input type='submit' value="update"
+					name="submit">
+			</form>
+		<li>
+			<form action="/admin/child/fetchchild" method="get">
+				<label>enter id </label> <input type="text" placeholder="child id"
+					name="id"> <input type='submit' value="fetch" name="submit">
+			</form>
+		<li><a href="/admin/child/listallchilds">list of child </a>
+	</ul>
+	<ul>
+		<li>
+			<h1>Hospital</h1>
+		<li><a href="/admin/hospital/addhospitalform">add Hospital </a>
+		<li>
+			<form action="/admin/hospital/hospitaldeleteform" method="get">
+				<label>enter id </label> <input type="text"
+					placeholder="hospital id" name="id"> <input type='submit'
+					value="delete" name="submit">
+			</form>
+		<li>
+			<form action="/admin/hospital/hospitalmodifyform" method="get">
+				<label>enter id </label> <input type="text"
+					placeholder="hospital id" name="id"> <input type='submit'
+					value="update" name="submit">
+			</form>
+		<li>
+			<form action="/admin/hospital/fetchhospital" method="get">
+				<label>enter id </label> <input type="text"
+					placeholder="hospital id" name="id"> <input type='submit'
+					value="fetch" name="submit">
+			</form>
+		<li><a href="/admin/hospital/listallhospitals">list of
+				Hospital </a>
+	</ul>
+	<ul>
+		<li>
+			<h1>Hospital Staff</h1>
+		<li><a href="/admin/hospitalstaff/addhospitalstaffform">add Hospital staff</a>
+		<li>
+			<form action="/admin/hospitalstaff/hospitalstaffdeleteform" method="get">
+				<label>enter id </label> <input type="text"
+					placeholder="hospita lstaff id" name="id"> <input type='submit'
+					value="delete" name="submit">
+			</form>
+		<li>
+			<form action="/admin/hospitalstaff/hospitalstaffmodifyform" method="get">
+				<label>enter id </label> <input type="text"
+					placeholder="hospital staff id" name="id"> <input type='submit'
+					value="update" name="submit">
+			</form>
+		<li>
+			<form action="/admin/hospitalstaff/fetchhospitalstaff" method="get">
+				<label>enter id </label> <input type="text"
+					placeholder="hospital staff id" name="id"> <input type='submit'
+					value="fetch" name="submit">
+			</form>
+		<li><a href="/admin/hospitalstaff/listallhospitalstaffs">list of Hospital </a>
+	</ul>
 </body>
 </html>

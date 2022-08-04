@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.chainsys.newbornbabyhealthtrackingsystem.model.LocationCode;
 
+
 /**
  * @author shan3102
  * @date   1/8/2022 

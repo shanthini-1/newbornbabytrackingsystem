@@ -15,6 +15,7 @@ public class LocationCode {
 	@Id
 	@Column(name="PIN_CODE")
 	private int pinCode;
+	
 	@Column(name="DISTRICT")
 	private String district;
 	@Column(name="STATE_NAME")
@@ -28,6 +29,7 @@ public class LocationCode {
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
+	
 	public String getDistrict() {
 		return district;
 	}
