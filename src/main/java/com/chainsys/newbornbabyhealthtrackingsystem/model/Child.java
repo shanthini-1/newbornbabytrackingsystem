@@ -4,10 +4,16 @@
 package com.chainsys.newbornbabyhealthtrackingsystem.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -42,6 +48,77 @@ public class Child {
 	private int motherId;
 	@Column(name = "GUARDIAN_ID")
 	private int guardianId;
+
+	@OneToMany(mappedBy = "child", fetch = FetchType.LAZY)
+	private List<VaccinationStatus> childVacineStatus;
+
+	public List<VaccinationStatus> getChildVacineStatus() {
+		return childVacineStatus;
+	}
+
+	public void setChildVacineStatus(List<VaccinationStatus> childVacineStatus) {
+		this.childVacineStatus = childVacineStatus;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "HOSPITAL_ID", nullable = false, insertable = false, updatable = false)
+	private Hospital hospital;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "DOCTOR_ID", nullable = false, insertable = false, updatable = false)
+	private HospitalStaff doctor;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "FATHER_ID", nullable = false, insertable = false, updatable = false)
+	private Person father;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MOTHER_ID", nullable = false, insertable = false, updatable = false)
+	private Person mother;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "GUARDIAN_ID", nullable = false, insertable = false, updatable = false)
+	private Person guardian;
+
+	public Hospital getHospital() {
+		return hospital;
+	}
+
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
+
+	public HospitalStaff getHospitalStaff() {
+		return doctor;
+	}
+
+	public void setHospitalStaff(HospitalStaff hospitalStaff) {
+		this.doctor = hospitalStaff;
+	}
+
+	public Person getFather() {
+		return father;
+	}
+
+	public void setFather(Person father) {
+		this.father = father;
+	}
+
+	public Person getMother() {
+		return mother;
+	}
+
+	public void setMother(Person mother) {
+		this.mother = mother;
+	}
+
+	public Person getGuardian() {
+		return guardian;
+	}
+
+	public void setGuardian(Person guardian) {
+		this.guardian = guardian;
+	}
 
 	public int getChildId() {
 		return childId;

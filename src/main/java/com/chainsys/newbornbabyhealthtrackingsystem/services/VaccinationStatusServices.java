@@ -4,10 +4,12 @@
 package com.chainsys.newbornbabyhealthtrackingsystem.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.ChildVaccineCompositeTable;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.VaccinationStatus;
 import com.chainsys.newbornbabyhealthtrackingsystem.repository.VaccinationStatusRepository;
 
@@ -24,16 +26,16 @@ public class VaccinationStatusServices {
 		return vaccinationStatusRepo.findAll();
 	}
 
-	public VaccinationStatus getVaccinationStatussById(int id) {
-		return vaccinationStatusRepo.findById(id);
+	public Optional<VaccinationStatus> getVaccinationStatussById(ChildVaccineCompositeTable compId) {
+		return vaccinationStatusRepo.findById(compId);
 	}
 
 	public VaccinationStatus addVaccinationStatus(VaccinationStatus theVac) {
 		return vaccinationStatusRepo.save(theVac);
 	}
 
-	public void removeVaccinationStatus(int id) {
-		vaccinationStatusRepo.deleteById(id);		
+	public void removeVaccinationStatus(ChildVaccineCompositeTable compId) {
+		vaccinationStatusRepo.deleteById(compId);		
 	}
 
 }

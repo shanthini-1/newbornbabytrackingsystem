@@ -3,9 +3,15 @@
  */
 package com.chainsys.newbornbabyhealthtrackingsystem.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,15 +27,23 @@ public class Hospital {
 	@Column(name="HOSPITAL_NAME")
 	private String hospitalName;
 	@Column(name="HOSPITAL_PLOT_NO")
-	private String HospitalPlotNo;
+	private String hospitalPlotNo;
 	@Column(name="HOSPITAL_STREET")
 	private String hospitalStreet;
 	@Column(name="HOSPITAL_CITY")
 	private String hospitalCity;
-	@Column(name="HOSPITAL_PIN_CODE")
+	@Column(name="PIN_CODE")
 	private int pinCode;
 	@Column(name="CONTACT_PERSON_ID")
-	private String contactPersonId;
+	private int contactPersonId;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="CONTACT_PERSON_ID",nullable = false,insertable = false,updatable = false )
+	private Person contactPerson;
+	
+	@OneToMany(mappedBy = "hospital",fetch = FetchType.LAZY)
+	private List<Child> hospitalChilds;
+	
 	public int getHospitalId() {
 		return hospitalId;
 	}
@@ -43,10 +57,10 @@ public class Hospital {
 		this.hospitalName = hospitalName;
 	}
 	public String getHospitalPlotNo() {
-		return HospitalPlotNo;
+		return hospitalPlotNo;
 	}
 	public void setHospitalPlotNo(String hospitalPlotNo) {
-		HospitalPlotNo = hospitalPlotNo;
+		this.hospitalPlotNo = hospitalPlotNo;
 	}
 	public String getHospitalStreet() {
 		return hospitalStreet;
@@ -66,14 +80,14 @@ public class Hospital {
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
-	public String getContactPersonId() {
+	public int getContactPersonId() {
 		return contactPersonId;
 	}
-	public void setContactPersonId(String contactPersonId) {
+	public void setContactPersonId(int contactPersonId) {
 		this.contactPersonId = contactPersonId;
 	}
 	
 	public String toString() {
-		return String.format("%d,%s,%s,%s,%s,%d,%d,",hospitalId,hospitalName,HospitalPlotNo,hospitalStreet,hospitalCity,pinCode,contactPersonId);
+		return String.format("%d,%s,%s,%s,%s,%d,%d,",hospitalId,hospitalName,hospitalPlotNo,hospitalStreet,hospitalCity,pinCode,contactPersonId);
 	}
 }

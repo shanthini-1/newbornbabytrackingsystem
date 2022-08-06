@@ -21,4 +21,6 @@ public interface HospitalRepository extends CrudRepository<Hospital, Integer> {
 	void deleteById(int hosId);
 
 	List<Hospital> findAll();
+	
+	Hospital findByContactPersonId(int id);
 }

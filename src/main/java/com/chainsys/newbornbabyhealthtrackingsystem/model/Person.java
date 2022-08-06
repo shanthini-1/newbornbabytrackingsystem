@@ -4,10 +4,15 @@
 package com.chainsys.newbornbabyhealthtrackingsystem.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -42,6 +47,52 @@ public class Person {
 	private String city;
 	@Column(name = "PIN_CODE")
 	private int pinCode;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="PIN_CODE",nullable = false,insertable = false,updatable = false)
+	private LocationCode loc ;
+	/*
+	 * unidirectional fetch location from location table 
+	 */
+	
+	public LocationCode getLoc() {
+		return loc;
+	}
+
+	public void setLoc(LocationCode loc) {
+		this.loc = loc;
+	}
+	
+	@OneToMany(mappedBy = "father")
+	private List<Child> fatherChilds;
+	@OneToMany(mappedBy = "mother")
+	private List<Child> motherChilds;
+	@OneToMany(mappedBy = "guardian")
+	private List<Child> guardianChilds;
+	
+	
+	public List<Child> getFatherChilds() {
+		return fatherChilds;
+	}
+
+	public void setFatherChilds(List<Child> fatherChilds) {
+		this.fatherChilds = fatherChilds;
+	}
+
+	public List<Child> getMotherChilds() {
+		return motherChilds;
+	}
+
+	public void setMotherChilds(List<Child> motherChilds) {
+		this.motherChilds = motherChilds;
+	}
+
+	public List<Child> getGuardianChilds() {
+		return guardianChilds;
+	}
+
+	public void setGuardianChilds(List<Child> guardianChilds) {
+		this.guardianChilds = guardianChilds;
+	}
 
 	public int getUserId() {
 		return userId;
@@ -140,7 +191,7 @@ public class Person {
 	}
 
 	public String toString() {
-		return String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d", userId, userName, userDob, gender, email, passWord,
-				phoneNumber, doorNumber, street,city, pinCode);
+		return String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s", userId, userName, userDob, gender, email, passWord,
+				phoneNumber, doorNumber, street,city );
 	}
 }

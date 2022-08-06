@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.chainsys.newbornbabyhealthtrackingsystem.dto.ContactPersonDTO;
+import com.chainsys.newbornbabyhealthtrackingsystem.dto.PersonLocationDTO;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.Hospital;
+import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.HospitalServices;
+import com.chainsys.newbornbabyhealthtrackingsystem.services.PersonServices;
 
 /**
  * @author shan3102
@@ -26,6 +30,8 @@ import com.chainsys.newbornbabyhealthtrackingsystem.services.HospitalServices;
 public class HospitalController {
 	@Autowired
 	private HospitalServices hospitalServices;
+	@Autowired
+	private PersonServices personServices;
 
 	@GetMapping("/listallhospitals")
 	public String getAllHospitals(Model model) {
@@ -71,5 +77,13 @@ public class HospitalController {
 	public String deleteHospital(@RequestParam("id") int hospitalId) {
 		hospitalServices.removeHospital(hospitalId);
 		return "redirect:/admin/hospital/listallhospitals";
+	}
+//	--------------------------------------
+	@GetMapping("/gethoscontactperson")
+	public String getHospitalContactPersonById(@RequestParam("id") int id, Model model) {
+		Hospital theHospital = hospitalServices.getHosContactPersonById(id);
+		model.addAttribute("fetchContactPersonById", theHospital);
+		model.addAttribute("fetchConPerfromPersonById", personServices.getPersonById(theHospital.getContactPersonId()));
+		return "find-by-id-hospital-person-form";
 	}
 }

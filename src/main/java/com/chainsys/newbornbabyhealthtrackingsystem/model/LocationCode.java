@@ -3,6 +3,7 @@ package com.chainsys.newbornbabyhealthtrackingsystem.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -15,13 +16,14 @@ public class LocationCode {
 	@Id
 	@Column(name="PIN_CODE")
 	private int pinCode;
-	
 	@Column(name="DISTRICT")
 	private String district;
 	@Column(name="STATE_NAME")
 	private String stateName;
 	@Column(name="COUNTRY")
 	private String country;
+	
+//	@OneToMany(mappedBy = "loc")
 	
 	public int getPinCode() {
 		return pinCode;

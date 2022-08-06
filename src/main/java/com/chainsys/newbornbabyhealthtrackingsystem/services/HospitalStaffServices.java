@@ -18,22 +18,36 @@ import com.chainsys.newbornbabyhealthtrackingsystem.repository.HospitalStaffRepo
 @Service
 public class HospitalStaffServices {
 	@Autowired
-	private HospitalStaffRepository hospitalStaffRepo;
+	private HospitalStaffRepository hospitalStaffRepo;	
+	
 
 	public List<HospitalStaff> getHospitalStaffs() {
 		return hospitalStaffRepo.findAll();
 	}
 
-	public HospitalStaff getHospitalStaffById(int hospitalId) {
-		return hospitalStaffRepo.findById(hospitalId);
+	public HospitalStaff getHospitalStaffById(int staffId) {
+		return hospitalStaffRepo.findById(staffId);
 	}
 
 	public HospitalStaff addHospitalStaff(HospitalStaff theHospitalStaff) {
 		return hospitalStaffRepo.save(theHospitalStaff);
 	}
 
-	public void removeHospitalStaff(int hospitalId) {
-		hospitalStaffRepo.deleteById(hospitalId);
+	public void removeHospitalStaff(int staffId) {
+		hospitalStaffRepo.deleteById(staffId);
 	}
+	
+//	
+//	@Transactional
+//	public ContactPersonDTO getStaffFromPerson(int staffId) {
+//		Person person =getStaffById(staffId);
+//		ContactPersonDTO hosStaffDto= new ContactPersonDTO();
+//		hosStaffDto.setContactPerson(person);
+//		return hosStaffDto;
+//	}
+
+//	private Person getStaffById(int staffId) {
+//		return personRepo.findByUserId(staffId);
+//	}
 
 }

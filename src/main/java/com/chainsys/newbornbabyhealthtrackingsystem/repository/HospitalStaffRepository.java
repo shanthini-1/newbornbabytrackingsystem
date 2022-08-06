@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import com.chainsys.newbornbabyhealthtrackingsystem.model.HospitalStaff;
+import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
 
 /**
  * @author shan3102
@@ -21,4 +22,6 @@ public interface HospitalStaffRepository extends CrudRepository<HospitalStaff, I
 	void deleteById(int hosStaffId);
 
 	List<HospitalStaff> findAll();
+
+//	Person findByStaffId(int staffId);
 }

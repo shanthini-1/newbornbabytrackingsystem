@@ -4,6 +4,7 @@
 package com.chainsys.newbornbabyhealthtrackingsystem.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.ChildVaccineCompositeTable;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.VaccinationStatus;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.VaccinationStatusServices;
 
@@ -36,8 +38,9 @@ public class VaccinationStatusController {
 	}
 
 	@GetMapping("/fetchvaccinationstatus")
-	public String getVaccinationStatusById(@RequestParam("id") int id, Model model) {
-		VaccinationStatus theVac = vaccinationStatusService.getVaccinationStatussById(id);
+	public String getVaccinationStatusById(@RequestParam("childid")int childId,@RequestParam("vacId") int vacId, Model model) {
+		ChildVaccineCompositeTable compObj = new ChildVaccineCompositeTable(childId,vacId);
+		Optional<VaccinationStatus> theVac = vaccinationStatusService.getVaccinationStatussById(compObj);
 		model.addAttribute("findVaccinationStatusById", theVac);
 		return "findbyid-vaccinationstatus-form";
 	}
@@ -56,8 +59,9 @@ public class VaccinationStatusController {
 	}
 
 	@GetMapping("/vaccinationstatusmodifyform")
-	public String showVaccinationStatusUpdateForm(@RequestParam("id") int id, Model model) {
-		VaccinationStatus theVac = vaccinationStatusService.getVaccinationStatussById(id);
+	public String showVaccinationStatusUpdateForm(@RequestParam("childId") int childId,@RequestParam("vacId")int vacId, Model model) {
+		ChildVaccineCompositeTable compObj = new ChildVaccineCompositeTable(childId,vacId);
+		Optional<VaccinationStatus> theVac = vaccinationStatusService.getVaccinationStatussById(compObj);
 		model.addAttribute("modifyvaccinationStatus", theVac);
 		return "update-vaccinationstatus-form";
 	}
@@ -70,8 +74,9 @@ public class VaccinationStatusController {
 	}
 
 	@GetMapping("/vaccinationStatusdeleteform")
-	public String showVaccinationStatusDeleteForm(@RequestParam("id") int id, Model model) {
-		vaccinationStatusService.removeVaccinationStatus(id);
+	public String showVaccinationStatusDeleteForm(@RequestParam("childId") int childId,@RequestParam("vacId")int vacId, Model model) {
+		ChildVaccineCompositeTable compObj = new ChildVaccineCompositeTable(childId,vacId);
+		vaccinationStatusService.removeVaccinationStatus(compObj);
 		return "redirect:/admin/vaccinationstatus/vaccinationstatuslist";
 	}
 

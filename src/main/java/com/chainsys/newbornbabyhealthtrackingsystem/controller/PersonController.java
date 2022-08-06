@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.chainsys.newbornbabyhealthtrackingsystem.dto.PersonLocationDTO;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
+import com.chainsys.newbornbabyhealthtrackingsystem.services.LocationCodeServices;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.PersonServices;
 
 /**
@@ -26,6 +28,8 @@ import com.chainsys.newbornbabyhealthtrackingsystem.services.PersonServices;
 public class PersonController {
 	@Autowired
 	private PersonServices personServices;
+	@Autowired
+	private LocationCodeServices locServices;
 
 	@GetMapping("/listallpersons")
 	public String getAllPersons(Model model) {
@@ -71,5 +75,14 @@ public class PersonController {
 	public String deletePerson(@RequestParam("id") int personId) {
 		personServices.removePerson(personId);
 		return "redirect:/user/person/listallpersons";
+	}
+
+//	----------------------------
+	@GetMapping("/getpersonlocation")
+	public String getPersonLocationById(@RequestParam("perId") int userId, Model model) {
+		Person theperson = personServices.getPersonById(userId);
+		model.addAttribute("fetchPersonByIdA", theperson);
+		model.addAttribute("fetchPersonloctionById", locServices.getLocationcodeById(theperson.getPinCode()));
+		return "find-by-id-person-location-form";
 	}
 }

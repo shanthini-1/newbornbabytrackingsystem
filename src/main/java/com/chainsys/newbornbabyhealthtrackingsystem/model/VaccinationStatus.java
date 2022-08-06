@@ -7,8 +7,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.ChildVaccineCompositeTable;
 
 /**
  * @author shan3102
@@ -19,10 +26,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "VACCINATION_STATUS")
+@IdClass(ChildVaccineCompositeTable.class)
 public class VaccinationStatus {
 	@Id
 	@Column(name="CHILD_ID")
 	private int childId;
+	@Id
 	@Column(name="VACCINE_ID")
 	private int vaccineId;
 	@Column(name="DTAE_OF_VACCINATION")
@@ -39,6 +48,17 @@ public class VaccinationStatus {
 	private double babyHeight;
 	public int getChildId() {
 		return childId;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="CHILD_ID",nullable = false,insertable = false,updatable = false)
+	private Child child;
+	
+	public Child getChild() {
+		return child;
+	}
+	public void setChild(Child child) {
+		this.child = child;
 	}
 	public void setChildId(int childId) {
 		this.childId = childId;

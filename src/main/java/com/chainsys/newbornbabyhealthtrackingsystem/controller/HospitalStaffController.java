@@ -14,8 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.chainsys.newbornbabyhealthtrackingsystem.dto.ContactPersonDTO;
+import com.chainsys.newbornbabyhealthtrackingsystem.dto.PersonLocationDTO;
+import com.chainsys.newbornbabyhealthtrackingsystem.model.Hospital;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.HospitalStaff;
+import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
+import com.chainsys.newbornbabyhealthtrackingsystem.services.HospitalServices;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.HospitalStaffServices;
+import com.chainsys.newbornbabyhealthtrackingsystem.services.PersonServices;
 
 /**
  * @author shan3102
@@ -26,6 +32,10 @@ import com.chainsys.newbornbabyhealthtrackingsystem.services.HospitalStaffServic
 public class HospitalStaffController {
 	@Autowired
 	private HospitalStaffServices hospitalStaffServices;
+	@Autowired
+	private HospitalServices hospitalServices;
+	@Autowired
+	private PersonServices personServices;
 
 	@GetMapping("/listallhospitalstaffs")
 	public String getAllHospitalStaffs(Model model) {
@@ -72,5 +82,14 @@ public class HospitalStaffController {
 		hospitalStaffServices.removeHospitalStaff(hospitalStaffId);
 		return "redirect:/admin/hospital/listallhospitalstaff";
 	}
+//	---------------------------------
+	@GetMapping("/gethoscontactpersondetails")
+	public String getHospitalContactPersonById(@RequestParam("id") int id, Model model) {
 
+		HospitalStaff thehosstaff = hospitalStaffServices.getHospitalStaffById(id);
+		model.addAttribute("fetchHospitalStaffById", thehosstaff);
+		model.addAttribute("fetchHospitalById", hospitalServices.getHospitalById(thehosstaff.getHospitalId()));
+		model.addAttribute("fetchPersonstaffById", personServices.getPersonById(thehosstaff.getStaffId()));
+		return "find-by-id-hospital-staff-form";
+	}
 }
