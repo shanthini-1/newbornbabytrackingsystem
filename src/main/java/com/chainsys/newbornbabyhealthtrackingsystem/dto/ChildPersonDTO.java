@@ -7,6 +7,9 @@ public class ChildPersonDTO {
 	private Child child;
 	private Person person;
 
+//	private Hospital hospital;private HospitalStaff hospitalStaff;
+//  include getter setter
+
 	public Child getChild() {
 		return child;
 	}

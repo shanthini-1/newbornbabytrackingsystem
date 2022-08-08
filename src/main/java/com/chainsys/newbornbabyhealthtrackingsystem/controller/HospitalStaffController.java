@@ -14,11 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.chainsys.newbornbabyhealthtrackingsystem.dto.ContactPersonDTO;
-import com.chainsys.newbornbabyhealthtrackingsystem.dto.PersonLocationDTO;
-import com.chainsys.newbornbabyhealthtrackingsystem.model.Hospital;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.HospitalStaff;
-import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.HospitalServices;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.HospitalStaffServices;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.PersonServices;
@@ -41,7 +37,7 @@ public class HospitalStaffController {
 	public String getAllHospitalStaffs(Model model) {
 		List<HospitalStaff> hospitalStaffList = hospitalStaffServices.getHospitalStaffs();
 		model.addAttribute("listAllHospitalStaffs", hospitalStaffList);
-		return "list-hospitalstaff";
+		return "list-hospital-staff";
 	}
 
 	@GetMapping("/fetchhospitalstaff")
@@ -61,7 +57,7 @@ public class HospitalStaffController {
 	@PostMapping("addhospitalstaffs")
 	public String addHospitalStaff(@ModelAttribute("addHospitalStaff") HospitalStaff theHospitalStaff) {
 		hospitalStaffServices.addHospitalStaff(theHospitalStaff);
-		return "redirect:/admin/hospital/listallhospitalstaff";
+		return "redirect:/admin/hospitalstaff/listallhospitalstaffs";
 	}
 
 	@GetMapping("/hospitalstaffmodifyform")
@@ -74,17 +70,17 @@ public class HospitalStaffController {
 	@PostMapping("/modifyhospitalstaffs")
 	public String updateHospitalStaff(@ModelAttribute("modifyHospitalStaff") HospitalStaff theHospitalStaff) {
 		hospitalStaffServices.addHospitalStaff(theHospitalStaff);
-		return "redirect:/admin/hospital/listallhospitalstaff";
+		return "redirect:/admin/hospitalstaff/listallhospitalstaffs";
 	}
 
 	@GetMapping("/hospitalstaffdeleteform")
-	public String deleteHospitalStaff(@RequestParam("id") int hospitalStaffId) {
+	public String deleteHospitalStaff(@RequestParam("id") long hospitalStaffId) {
 		hospitalStaffServices.removeHospitalStaff(hospitalStaffId);
-		return "redirect:/admin/hospital/listallhospitalstaff";
+		return "redirect:/admin/hospitalstaff/listallhospitalstaffs";
 	}
 //	---------------------------------
 	@GetMapping("/gethoscontactpersondetails")
-	public String getHospitalContactPersonById(@RequestParam("id") int id, Model model) {
+	public String getHospitalContactPersonById(@RequestParam("id") long id, Model model) {
 
 		HospitalStaff thehosstaff = hospitalStaffServices.getHospitalStaffById(id);
 		model.addAttribute("fetchHospitalStaffById", thehosstaff);

@@ -27,10 +27,10 @@
 					<addhospitalform:input path="hospitalName" />
 				</div>
 				<div>
-					<label for="hospitalPlotId">Hospital Plot No</label>
+					<label for="hospitalPlotNo">Hospital Plot No</label>
 				</div>
 				<div>
-					<addhospitalform:input path="hospitalPlotId" />
+					<addhospitalform:input path="hospitalPlotNo" />
 				</div>
 				<div>
 					<label for="hospitalStreet">Hospital Street</label>

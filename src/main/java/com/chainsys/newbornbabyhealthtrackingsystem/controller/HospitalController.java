@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.chainsys.newbornbabyhealthtrackingsystem.dto.ContactPersonDTO;
-import com.chainsys.newbornbabyhealthtrackingsystem.dto.PersonLocationDTO;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.Hospital;
-import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.HospitalServices;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.PersonServices;
 
@@ -36,8 +33,8 @@ public class HospitalController {
 	@GetMapping("/listallhospitals")
 	public String getAllHospitals(Model model) {
 		List<Hospital> hospitalList = hospitalServices.getHospitals();
-		model.addAttribute("listAllHospitals", hospitalList);
-		return "list-hospitals";
+		model.addAttribute("listAllTheHospitals", hospitalList);
+		return "list-hospital";
 	}
 
 	@GetMapping("/fetchhospital")
@@ -81,9 +78,9 @@ public class HospitalController {
 //	--------------------------------------
 	@GetMapping("/gethoscontactperson")
 	public String getHospitalContactPersonById(@RequestParam("id") int id, Model model) {
-		Hospital theHospital = hospitalServices.getHosContactPersonById(id);
-		model.addAttribute("fetchContactPersonById", theHospital);
-		model.addAttribute("fetchConPerfromPersonById", personServices.getPersonById(theHospital.getContactPersonId()));
+		List<Hospital> hospitals=hospitalServices.getHospitalsByContactperson(id);
+		model.addAttribute("listHosByConPrsnId", hospitals);
+		model.addAttribute("fetchConPerfromPersonById", personServices.getPersonById(id));
 		return "find-by-id-hospital-person-form";
 	}
 }

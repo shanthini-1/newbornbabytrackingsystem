@@ -3,19 +3,17 @@
  */
 package com.chainsys.newbornbabyhealthtrackingsystem.services;
 
-import java.util.Iterator;
 import java.util.List;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chainsys.newbornbabyhealthtrackingsystem.dto.VaccinationStatusDTO;
+//import com.chainsys.newbornbabyhealthtrackingsystem.dto.VaccinationStatusDTO;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.Child;
-import com.chainsys.newbornbabyhealthtrackingsystem.model.VaccinationStatus;
 import com.chainsys.newbornbabyhealthtrackingsystem.repository.ChildRepository;
-import com.chainsys.newbornbabyhealthtrackingsystem.repository.VaccinationStatusRepository;
+import com.chainsys.newbornbabyhealthtrackingsystem.repository.HospitalRepository;
+//import com.chainsys.newbornbabyhealthtrackingsystem.repository.VaccinationStatusRepository;
+import com.chainsys.newbornbabyhealthtrackingsystem.repository.VaccineRepository;
 
 /**
  * @author shan3102
@@ -25,6 +23,15 @@ import com.chainsys.newbornbabyhealthtrackingsystem.repository.VaccinationStatus
 public class ChildServices {
 	@Autowired
 	private ChildRepository childRepo;
+	@Autowired
+	private HospitalRepository hosRepo;
+	@Autowired
+	private VaccineRepository vaccineRepository;
+
+//	@Autowired
+//	private VaccinationStatusServices vaccinationStatusServices;
+//	@Autowired
+//	private VaccinationStatusRepository vaccinationStatusRepository;
 
 	public List<Child> getChilds() {
 		return childRepo.findAll();
@@ -41,25 +48,42 @@ public class ChildServices {
 	public void removeChild(int childId) {
 		childRepo.deleteById(childId);
 	}
+//
+//	@Transactional
+//	public VaccinationStatusDTO getChildVaccinestatus(int childId) {
+//		Child child = findById(childId);
+//		VaccinationStatusDTO vaccinationStatusDTO = new VaccinationStatusDTO();
+//		vaccinationStatusDTO.setChild(child);
+//		List<VaccinationStatus> vaccinationStatus = vaccinationStatusRepository.findByChildId(childId);
+////		List<Vaccine> vac = vaccineRepository.findByVaccineId(vaccinationStatus.get(childId));
+//		Iterator<VaccinationStatus> itr = vaccinationStatus.iterator();
+//		while (itr.hasNext()) {
+//			vaccinationStatusDTO.addVaccinationStatus((VaccinationStatus) itr.next());
+//		}
+//		return vaccinationStatusDTO;
+//
+//	}
+//
+//	public List<Child> findByChildId(VaccinationStatus vaccinationStatus) {
+//		return childRepo.findById(vaccinationStatus);
+//	}
 
-	@Transactional
-	public VaccinationStatusDTO getChildVaccinestatus(int childId) {
-		Child child = findById(childId);
-		VaccinationStatusDTO vaccinationStatusDTO = new VaccinationStatusDTO();
-		vaccinationStatusDTO.setChild(child);
-		List<VaccinationStatus> vaccinationStatus = VaccinationStatusRepository.findChilById(childId);
-		Iterator<VaccinationStatus> itr = vaccinationStatus.iterator();
-		while (itr.hasNext()) {
-			vaccinationStatusDTO.addVaccinationStatus((VaccinationStatus) itr.next());
-
-		}
-		return vaccinationStatusDTO;
-
+	public List<Child> getChildByHospitalId(int hospitalId) {
+		return childRepo.findAllByHospitalId(hospitalId);
 	}
 
-	public Child getChildById(int childId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Child> getChildDoctorId(long doctorId) {
+		return childRepo.findAllByDoctorId(doctorId);
+		}
+
+	public List<Child> getChildFatherMotherId(long fatherId,long motherId) {
+		return childRepo.findAllByFatherIdAndMotherId(fatherId,motherId);
+	}
+//	public List<Child> getChildMotherId(long parentId) {
+//		return childRepo.findAllByMotherId(parentId);
+//	}
+	public List<Child> getChildGuardianId(long parentId) {
+		return childRepo.findAllByGuardianId(parentId);
 	}
 
 

@@ -13,12 +13,14 @@ import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
  * @author shan3102
  *
  */
-public interface PersonRepository extends CrudRepository<Person, Integer> {
-	Person findByUserId(int id);
+public interface PersonRepository extends CrudRepository<Person, Long> {
+	Person findByUserId(long id);
 
-	Person save(Person prsn);
-
-	void deleteById(int prsn_id);
+	void deleteById(long psrn);
 
 	List<Person> findAll();
+
+	List<Person> findAllByPinCode(int pincode);
+
+	Person save(Person prsn);
 }

@@ -25,7 +25,7 @@ public class HospitalStaffServices {
 		return hospitalStaffRepo.findAll();
 	}
 
-	public HospitalStaff getHospitalStaffById(int staffId) {
+	public HospitalStaff getHospitalStaffById(long staffId) {
 		return hospitalStaffRepo.findById(staffId);
 	}
 
@@ -33,20 +33,20 @@ public class HospitalStaffServices {
 		return hospitalStaffRepo.save(theHospitalStaff);
 	}
 
-	public void removeHospitalStaff(int staffId) {
+	public void removeHospitalStaff(long staffId) {
 		hospitalStaffRepo.deleteById(staffId);
 	}
 	
 //	
 //	@Transactional
-//	public ContactPersonDTO getStaffFromPerson(int staffId) {
+//	public ContactPersonDTO getStaffFromPerson(long staffId) {
 //		Person person =getStaffById(staffId);
 //		ContactPersonDTO hosStaffDto= new ContactPersonDTO();
 //		hosStaffDto.setContactPerson(person);
 //		return hosStaffDto;
 //	}
 
-//	private Person getStaffById(int staffId) {
+//	private Person getStaffById(long staffId) {
 //		return personRepo.findByUserId(staffId);
 //	}
 

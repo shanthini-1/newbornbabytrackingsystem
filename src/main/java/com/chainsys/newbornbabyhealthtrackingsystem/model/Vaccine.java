@@ -89,7 +89,6 @@ public class Vaccine {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"%d, %d, %s, %s, %d, %s, %2f,vaccine_id,week,vaccine_name, vac_description,dosage,suggestion,vaccine_price");
+		return String.format("%d, %d, %s, %s, %d, %s, %2f",vaccineId,week,vaccineName, vacDescription,dosage,suggestion,vaccinePrice);
 	}
 }

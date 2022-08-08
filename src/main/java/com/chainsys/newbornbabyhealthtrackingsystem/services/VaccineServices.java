@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.ChildVaccineCompositeTable;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.Vaccine;
 import com.chainsys.newbornbabyhealthtrackingsystem.repository.VaccineRepository;
 

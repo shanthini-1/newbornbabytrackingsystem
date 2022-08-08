@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.ChildVaccineCompositeTable;
+
 /**
  * @author shan3102
  *
@@ -35,7 +37,7 @@ public class Hospital {
 	@Column(name="PIN_CODE")
 	private int pinCode;
 	@Column(name="CONTACT_PERSON_ID")
-	private int contactPersonId;
+	private long contactPersonId;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="CONTACT_PERSON_ID",nullable = false,insertable = false,updatable = false )
@@ -44,6 +46,18 @@ public class Hospital {
 	@OneToMany(mappedBy = "hospital",fetch = FetchType.LAZY)
 	private List<Child> hospitalChilds;
 	
+	public Person getContactPerson() {
+		return contactPerson;
+	}
+	public void setContactPerson(Person contactPerson) {
+		this.contactPerson = contactPerson;
+	}
+	public List<Child> getHospitalChilds() {
+		return hospitalChilds;
+	}
+	public void setHospitalChilds(List<Child> hospitalChilds) {
+		this.hospitalChilds = hospitalChilds;
+	}
 	public int getHospitalId() {
 		return hospitalId;
 	}
@@ -80,14 +94,33 @@ public class Hospital {
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
-	public int getContactPersonId() {
+	public long getContactPersonId() {
 		return contactPersonId;
 	}
-	public void setContactPersonId(int contactPersonId) {
+	public void setContactPersonId(long contactPersonId) {
 		this.contactPersonId = contactPersonId;
 	}
 	
 	public String toString() {
-		return String.format("%d,%s,%s,%s,%s,%d,%d,",hospitalId,hospitalName,hospitalPlotNo,hospitalStreet,hospitalCity,pinCode,contactPersonId);
+		return String.format("%d,%s,%s,%s,%s,%d,%L",hospitalId,hospitalName,hospitalPlotNo,hospitalStreet,hospitalCity,pinCode,contactPersonId);
+	}
+	public boolean equals(Object obj) {
+		boolean result = false;
+		if (obj == null) {
+			return false;
+		}
+		Class<? extends Object> c1 = obj.getClass();
+		if (c1 == this.getClass()) {
+			Hospital other = (Hospital) obj;
+			if (other.hashCode() == this.hashCode()) {
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	public int hashCode() {
+		return this.hospitalId;
 	}
 }
+

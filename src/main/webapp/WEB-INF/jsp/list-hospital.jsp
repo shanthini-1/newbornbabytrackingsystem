@@ -23,11 +23,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="hospital" items="${listAllHospitals}">
+					<c:forEach var="hospital" items="${listAllTheHospitals}">
 						<tr>
 							<td>${hospital.hospitalId}</td>
 							<td>${hospital.hospitalName}</td>
-							<td>${hospital.hospitalPlotId}</td>
+							<td>${hospital.hospitalPlotNo}</td>
 							<td>${hospital.hospitalStreet}</td>
 							<td>${hospital.hospitalCity}</td>
 							<td>${hospital.pinCode}</td>

@@ -23,10 +23,7 @@ public interface VaccinationStatusRepository extends CrudRepository<VaccinationS
 	void deleteById(ChildVaccineCompositeTable compId);
 
 	List<VaccinationStatus> findAll();
-	List<VaccinationStatus> findByChildId(int id);
+	List<VaccinationStatus> findByChildId(int childId);
+	List<VaccinationStatus> findByVaccineId(int vacId);
 
-	static List<VaccinationStatus> findChilById(int childId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

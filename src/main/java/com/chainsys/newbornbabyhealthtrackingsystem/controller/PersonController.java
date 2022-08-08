@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.chainsys.newbornbabyhealthtrackingsystem.dto.PersonLocationDTO;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.LocationCodeServices;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.PersonServices;
@@ -39,7 +38,7 @@ public class PersonController {
 	}
 
 	@GetMapping("/fetchperson")
-	public String getPersonById(@RequestParam("id") int personId, Model model) {
+	public String getPersonById(@RequestParam("id") long personId, Model model) {
 		Person theperson = personServices.getPersonById(personId);
 		model.addAttribute("fetchPersonById", theperson);
 		return "find-by-id-person-form";
@@ -59,7 +58,7 @@ public class PersonController {
 	}
 
 	@GetMapping("/personmodifyform")
-	public String showPersonUpdateForm(@RequestParam("id") int personId, Model model) {
+	public String showPersonUpdateForm(@RequestParam("id") long personId, Model model) {
 		Person thePerson = personServices.getPersonById(personId);
 		model.addAttribute("modifyPerson", thePerson);
 		return "update-form-person";
@@ -72,14 +71,14 @@ public class PersonController {
 	}
 
 	@GetMapping("/persondeleteform")
-	public String deletePerson(@RequestParam("id") int personId) {
+	public String deletePerson(@RequestParam("id") long personId) {
 		personServices.removePerson(personId);
 		return "redirect:/user/person/listallpersons";
 	}
 
 //	----------------------------
 	@GetMapping("/getpersonlocation")
-	public String getPersonLocationById(@RequestParam("perId") int userId, Model model) {
+	public String getPersonLocationById(@RequestParam("perId") long userId, Model model) {
 		Person theperson = personServices.getPersonById(userId);
 		model.addAttribute("fetchPersonByIdA", theperson);
 		model.addAttribute("fetchPersonloctionById", locServices.getLocationcodeById(theperson.getPinCode()));

@@ -20,12 +20,6 @@
 					<viewlocationform:input path="pinCode" readonly="true" />
 				</div>
 				<div>
-					<label for="city">city</label>
-				</div>
-				<div>
-					<viewlocationform:input path="city" readonly="true" />
-				</div>
-				<div>
 					<label for="district">District</label>
 				</div>
 				<div>

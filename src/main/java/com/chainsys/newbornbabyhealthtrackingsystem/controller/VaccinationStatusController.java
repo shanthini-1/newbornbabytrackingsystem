@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.ChildVaccineCompositeTable;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.VaccinationStatus;
+import com.chainsys.newbornbabyhealthtrackingsystem.services.ChildServices;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.VaccinationStatusServices;
+import com.chainsys.newbornbabyhealthtrackingsystem.services.VaccineServices;
 
 /**
  * @author shan3102
@@ -30,6 +32,11 @@ public class VaccinationStatusController {
 	@Autowired
 	private VaccinationStatusServices vaccinationStatusService;
 
+	@Autowired
+	private ChildServices childServices;
+	@Autowired
+	private VaccineServices vaccineServices;
+
 	@GetMapping("/listallvaccinationstatus")
 	public String getVaccinationStatus(Model model) {
 		List<VaccinationStatus> vaccinationStatusList = vaccinationStatusService.getVaccinationStatus();
@@ -38,8 +45,9 @@ public class VaccinationStatusController {
 	}
 
 	@GetMapping("/fetchvaccinationstatus")
-	public String getVaccinationStatusById(@RequestParam("childid")int childId,@RequestParam("vacId") int vacId, Model model) {
-		ChildVaccineCompositeTable compObj = new ChildVaccineCompositeTable(childId,vacId);
+	public String getVaccinationStatusById(@RequestParam("childid") int childId, @RequestParam("vacId") int vacId,
+			Model model) {
+		ChildVaccineCompositeTable compObj = new ChildVaccineCompositeTable(childId, vacId);
 		Optional<VaccinationStatus> theVac = vaccinationStatusService.getVaccinationStatussById(compObj);
 		model.addAttribute("findVaccinationStatusById", theVac);
 		return "findbyid-vaccinationstatus-form";
@@ -59,25 +67,37 @@ public class VaccinationStatusController {
 	}
 
 	@GetMapping("/vaccinationstatusmodifyform")
-	public String showVaccinationStatusUpdateForm(@RequestParam("childId") int childId,@RequestParam("vacId")int vacId, Model model) {
-		ChildVaccineCompositeTable compObj = new ChildVaccineCompositeTable(childId,vacId);
+	public String showVaccinationStatusUpdateForm(@RequestParam("childId") int childId,
+			@RequestParam("vacId") int vacId, Model model) {
+		ChildVaccineCompositeTable compObj = new ChildVaccineCompositeTable(childId, vacId);
 		Optional<VaccinationStatus> theVac = vaccinationStatusService.getVaccinationStatussById(compObj);
 		model.addAttribute("modifyvaccinationStatus", theVac);
 		return "update-vaccinationstatus-form";
 	}
 
 	@PostMapping("/modifyvaccinationStatus")
-	public String modifyingVaccinationStatus(
-			@ModelAttribute("modifyvaccinationStatus") VaccinationStatus theVac) {
+	public String modifyingVaccinationStatus(@ModelAttribute("modifyvaccinationStatus") VaccinationStatus theVac) {
 		vaccinationStatusService.addVaccinationStatus(theVac);
 		return "redirect:/admin/vaccinationstatus/vaccinationstatuslist";
 	}
 
 	@GetMapping("/vaccinationStatusdeleteform")
-	public String showVaccinationStatusDeleteForm(@RequestParam("childId") int childId,@RequestParam("vacId")int vacId, Model model) {
-		ChildVaccineCompositeTable compObj = new ChildVaccineCompositeTable(childId,vacId);
+	public String showVaccinationStatusDeleteForm(@RequestParam("childId") int childId,
+			@RequestParam("vacId") int vacId, Model model) {
+		ChildVaccineCompositeTable compObj = new ChildVaccineCompositeTable(childId, vacId);
 		vaccinationStatusService.removeVaccinationStatus(compObj);
 		return "redirect:/admin/vaccinationstatus/vaccinationstatuslist";
 	}
 
+/*	@GetMapping("/getbookbyauthorbookdetails")
+
+	public String listChildbyVaccine(@RequestParam("vaccineId") ChildVaccineCompositeTable vaccineId, Model model) {
+		//model.addAttribute("getVaccine",(vaccineServices.getVaccinesById(vaccineId)));
+//		List<VaccinationStatus> vaccinationStatus = vaccinationStatusService.getChildrenListByVacId(vaccineId);
+		model.addAttribute("getVaccine",);
+		Optional<VaccinationStatus> vaccinationStatus = vaccinationStatusService.getVaccinationStatussById(vaccineId);
+		model.addAttribute("vacchilddetailslist", vaccinationStatus);
+		List<Child>childs=childServices.findByChildId(vaccinationStatus.get());
+		return "list-childs-vaccinestatus";
+	}*/
 }

@@ -3,11 +3,6 @@ package com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-
-import com.chainsys.newbornbabyhealthtrackingsystem.model.VaccinationStatus;
 
 public class ChildVaccineCompositeTable implements Serializable {
 
@@ -18,7 +13,6 @@ public class ChildVaccineCompositeTable implements Serializable {
 	@Column(name = "VACCINE_ID")
 	private int vaccineId;
 	
-
 	
 	public ChildVaccineCompositeTable() {
 
@@ -45,5 +39,27 @@ public class ChildVaccineCompositeTable implements Serializable {
 	public void setVaccineId(int vaccineId) {
 		this.vaccineId = vaccineId;
 	}
+	
+	public String toString() {
+		return String.format("%d,%d", childId, vaccineId);
+	}
 
+	public boolean equals(Object obj) {
+		boolean result = false;
+		if (obj == null) {
+			return false;
+		}
+		Class<? extends Object> c1 = obj.getClass();
+		if (c1 == this.getClass()) {
+			ChildVaccineCompositeTable other = (ChildVaccineCompositeTable) obj;
+			if (other.hashCode() == this.hashCode()) {
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	public int hashCode() {
+		return this.childId + this.vaccineId;
+	}
 }

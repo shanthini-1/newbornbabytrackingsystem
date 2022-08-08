@@ -19,7 +19,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="hospitalstaff" items="${listAllHospitalstaff}">
+					<c:forEach var="hospitalstaff" items="${listAllHospitalStaffs}">
 						<tr>
 							<td>${hospitalstaff.hospitalId}</td>
 							<td>${hospitalstaff.staffId}</td>

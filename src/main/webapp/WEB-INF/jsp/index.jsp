@@ -125,6 +125,12 @@
 					name="id"> <input type='submit' value="fetch" name="submit">
 			</form>
 		<li><a href="/user/person/listallpersons">list of person </a>
+		<li>
+		<h3>fetch person and location</h3>
+			<form action="/user/person/getpersonlocation" method="get">
+				<label>enter id </label> <input type="text" placeholder="user id"
+					name="perId"> <input type='submit' value="fetch" name="submit">
+			</form>
 	</ul>
 	<ul>
 		<li>
@@ -148,6 +154,31 @@
 					name="id"> <input type='submit' value="fetch" name="submit">
 			</form>
 		<li><a href="/admin/child/listallchilds">list of child </a>
+		<li>
+			<form action="/admin/child/childvaccinestatus" method="get">
+			<h3>fetch child vaccination status details</h3>
+				<label>enter id </label> <input type="text" placeholder="child id"
+					name="id"> <input type='submit' value="fetch" name="submit">
+			</form>
+			<li>
+			<form action="/admin/child/childhospitaldetails" method="get">
+			<h3>fetch child hospital details</h3>
+				<label>enter id </label> <input type="text" placeholder="child id"
+					name="id"> <input type='submit' value="fetch" name="submit">
+			</form>
+			<li>
+			<form action="/admin/child/childparentdetails" method="get">
+			<h3>fetch child parent details</h3>
+				<label>enter id </label> <input type="text" placeholder="child id"
+					name="id"> <input type='submit' value="fetch" name="submit">
+			</form>
+			<li>
+			<form action="/admin/child/childguardiandetails" method="get">
+			<h3>fetch child guardian details</h3>
+				<label>enter id </label> <input type="text" placeholder="child id"
+					name="id"> <input type='submit' value="fetch" name="submit">
+			</form>
+			
 	</ul>
 	<ul>
 		<li>
@@ -173,6 +204,12 @@
 			</form>
 		<li><a href="/admin/hospital/listallhospitals">list of
 				Hospital </a>
+				<li>
+			<form action="/admin/hospital/gethoscontactperson" method="get">
+				<label>enter id </label> <input type="text"
+					placeholder="contact person id" name="id"> <input type='submit'
+					value="fetch" name="submit">
+			</form>
 	</ul>
 	<ul>
 		<li>
@@ -196,7 +233,16 @@
 					placeholder="hospital staff id" name="id"> <input type='submit'
 					value="fetch" name="submit">
 			</form>
-		<li><a href="/admin/hospitalstaff/listallhospitalstaffs">list of Hospital </a>
+		<li><a href="/admin/hospitalstaff/listallhospitalstaffs">list of Hospital Staffs </a>
+		<li>
+		<h3>fetch details of staff</h3>
+			<form action="/admin/hospitalstaff/gethoscontactpersondetails" method="get">
+				<label>enter id </label> <input type="text"
+					placeholder="hospital staff id" name="id"> <input type='submit'
+					value="fetch" name="submit">
+			</form>
+		
+	
 	</ul>
 </body>
 </html>

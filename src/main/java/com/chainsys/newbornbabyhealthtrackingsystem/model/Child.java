@@ -4,7 +4,6 @@
 package com.chainsys.newbornbabyhealthtrackingsystem.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -41,41 +38,30 @@ public class Child {
 	@Column(name = "HOSPITAL_ID")
 	private int hospitalId;
 	@Column(name = "DOCTOR_ID")
-	private int doctorId;
+	private long doctorId;
 	@Column(name = "FATHER_ID")
-	private int fatherId;
+	private long fatherId;
 	@Column(name = "MOTHER_ID")
-	private int motherId;
+	private long motherId;
 	@Column(name = "GUARDIAN_ID")
-	private int guardianId;
-
-	@OneToMany(mappedBy = "child", fetch = FetchType.LAZY)
-	private List<VaccinationStatus> childVacineStatus;
-
-	public List<VaccinationStatus> getChildVacineStatus() {
-		return childVacineStatus;
-	}
-
-	public void setChildVacineStatus(List<VaccinationStatus> childVacineStatus) {
-		this.childVacineStatus = childVacineStatus;
-	}
+	private long guardianId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "HOSPITAL_ID", nullable = false, insertable = false, updatable = false)
 	private Hospital hospital;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DOCTOR_ID", nullable = false, insertable = false, updatable = false)
 	private HospitalStaff doctor;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "FATHER_ID", nullable = false, insertable = false, updatable = false)
 	private Person father;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MOTHER_ID", nullable = false, insertable = false, updatable = false)
 	private Person mother;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "GUARDIAN_ID", nullable = false, insertable = false, updatable = false)
 	private Person guardian;
@@ -86,14 +72,6 @@ public class Child {
 
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
-	}
-
-	public HospitalStaff getHospitalStaff() {
-		return doctor;
-	}
-
-	public void setHospitalStaff(HospitalStaff hospitalStaff) {
-		this.doctor = hospitalStaff;
 	}
 
 	public Person getFather() {
@@ -176,11 +154,11 @@ public class Child {
 		this.hospitalId = hospitalId;
 	}
 
-	public int getDoctorId() {
+	public long getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(int doctorId) {
+	public void setDoctorId(long doctorId) {
 		this.doctorId = doctorId;
 	}
 
@@ -192,32 +170,41 @@ public class Child {
 		this.bloodGroup = bloodGroup;
 	}
 
-	public int getFatherId() {
+	public long getFatherId() {
 		return fatherId;
 	}
 
-	public void setFatherId(int fatherId) {
+	public void setFatherId(long fatherId) {
 		this.fatherId = fatherId;
 	}
 
-	public int getMotherId() {
+	public long getMotherId() {
 		return motherId;
 	}
 
-	public void setMotherId(int motherId) {
+	public void setMotherId(long motherId) {
 		this.motherId = motherId;
 	}
 
-	public int getGuardianId() {
+	public long getGuardianId() {
 		return guardianId;
 	}
 
-	public void setGuardianId(int guardianId) {
+	public void setGuardianId(long guardianId) {
+
 		this.guardianId = guardianId;
 	}
 
+	public HospitalStaff getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(HospitalStaff doctor) {
+		this.doctor = doctor;
+	}
+
 	public String toString() {
-		return String.format("%d,%s,%s,%s,%d,%s,%s,%d,%d,%d,%d,%d", childId, childName, childDob, gender, birthWeight,
+		return String.format("%d,%s,%s,%s,%d,%s,%s,%d,%L,%L,%L,%L", childId, childName, childDob, gender, birthWeight,
 				birthPlace, bloodGroup, hospitalId, doctorId, fatherId, motherId, guardianId);
 	}
 }

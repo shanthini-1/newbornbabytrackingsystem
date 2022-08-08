@@ -21,12 +21,6 @@
 					<updatelocationform:input path="pinCode" />
 				</div>
 				<div>
-					<label for="city">city</label>
-				</div>
-				<div>
-					<updatelocationform:input path="city" />
-				</div>
-				<div>
 					<label for="district">District</label>
 				</div>
 				<div>

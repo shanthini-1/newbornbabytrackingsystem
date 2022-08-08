@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -24,7 +25,7 @@ import javax.persistence.Table;
 public class Person {
 	@Id
 	@Column(name = "USER_ID")
-	private int userId;
+	private long userId;
 	@Column(name = "EMAIL")
 	private String email;
 	@Column(name = "USER_NAME")
@@ -94,11 +95,11 @@ public class Person {
 		this.guardianChilds = guardianChilds;
 	}
 
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
@@ -191,7 +192,26 @@ public class Person {
 	}
 
 	public String toString() {
-		return String.format("%d,%s,%s,%s,%s,%s,%s,%s,%s,%s", userId, userName, userDob, gender, email, passWord,
+		return String.format("%L,%s,%s,%s,%s,%s,%s,%s,%s,%s", userId, userName, userDob, gender, email, passWord,
 				phoneNumber, doorNumber, street,city );
 	}
+	public boolean equals(Object obj) {
+		boolean result = false;
+		if (obj == null) {
+			return false;
+		}
+		Class<? extends Object> c1 = obj.getClass();
+		if (c1 == this.getClass()) {
+			Person other = (Person) obj;
+			if (other.hashCode() == this.hashCode()) {
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	public int hashCode() {
+		return (int) this.userId;
+	}
+	
 }
