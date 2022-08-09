@@ -37,11 +37,11 @@ public class HospitalServices {
 	public void removeHospital(int hospitalId) {
 		hospitalRepo.deleteById(hospitalId);
 	}
-	public Hospital getHosContactPersonById(long contactPersonId) {
+	public Hospital getHosContactPersonById(Integer contactPersonId) {
 		return hospitalRepo.findByContactPersonId(contactPersonId);
 	}
 	
-	public List<Hospital> getHospitalsByContactperson(long conperson) {
+	public List<Hospital> getHospitalsByContactperson(Integer conperson) {
 		return hospitalRepo.findAllByContactPersonId(conperson);
 	}
 	

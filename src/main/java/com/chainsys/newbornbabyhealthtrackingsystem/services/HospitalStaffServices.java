@@ -4,6 +4,7 @@
 package com.chainsys.newbornbabyhealthtrackingsystem.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class HospitalStaffServices {
 		return hospitalStaffRepo.findAll();
 	}
 
-	public HospitalStaff getHospitalStaffById(long staffId) {
+	public Optional<HospitalStaff> getHospitalStaffById(Integer staffId) {
 		return hospitalStaffRepo.findById(staffId);
 	}
 
@@ -33,20 +34,20 @@ public class HospitalStaffServices {
 		return hospitalStaffRepo.save(theHospitalStaff);
 	}
 
-	public void removeHospitalStaff(long staffId) {
+	public void removeHospitalStaff(Integer staffId) {
 		hospitalStaffRepo.deleteById(staffId);
 	}
 	
 //	
 //	@Transactional
-//	public ContactPersonDTO getStaffFromPerson(long staffId) {
+//	public ContactPersonDTO getStaffFromPerson(Integer staffId) {
 //		Person person =getStaffById(staffId);
 //		ContactPersonDTO hosStaffDto= new ContactPersonDTO();
 //		hosStaffDto.setContactPerson(person);
 //		return hosStaffDto;
 //	}
 
-//	private Person getStaffById(long staffId) {
+//	private Person getStaffById(Integer staffId) {
 //		return personRepo.findByUserId(staffId);
 //	}
 

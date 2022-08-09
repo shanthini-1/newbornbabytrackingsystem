@@ -33,27 +33,13 @@ public class PersonServices {
 		return personRepo.save(thePerson);		
 	}
 
-	public void removePerson(long personId) {
+	public void removePerson(Integer personId) {
 		personRepo.deleteById(personId);
 	}
 
-	public Person getPersonById(long personId) {
+	public Person getPersonById(Integer personId) {
 		return personRepo.findByUserId(personId);
 	}
-//	private LocationCode getPersonLocationById(long personPinId) {
-//	return locRepo.findByPinCode(personPinId);
-//}
 
-
-
-//@Transactional
-//public PersonLocationDTO getPersonWithLocation(long pincode) {
-//	LocationCode loc =getPersonLocationById(pincode);
-//	PersonLocationDTO plDto= new PersonLocationDTO();
-//	plDto.setLoc(loc);
-//	return plDto;
-//}
-
-//	
 
 }

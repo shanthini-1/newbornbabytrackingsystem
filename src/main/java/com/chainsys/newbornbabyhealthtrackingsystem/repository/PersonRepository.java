@@ -13,10 +13,10 @@ import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
  * @author shan3102
  *
  */
-public interface PersonRepository extends CrudRepository<Person, Long> {
-	Person findByUserId(long id);
+public interface PersonRepository extends CrudRepository<Person, Integer> {
+	Person findByUserId(Integer id);
 
-	void deleteById(long psrn);
+	void deleteById(Integer psrn);
 
 	List<Person> findAll();
 

@@ -12,7 +12,7 @@
 	<div id="root">
 		<div id="form">
 			<findpersonform:form action="" method="get"
-				modelAttribute="fetchPersonById">
+				modelAttribute="childsFather">
 				<div>
 					<label for="userId">User Id</label>
 				</div>
@@ -57,7 +57,7 @@
 	<div id="root">
 		<div id="form">
 			<findpersonform:form action="" method="get"
-				modelAttribute="fetchPersonById">
+				modelAttribute="childsMother">
 				<div>
 					<label for="userId">User Id</label>
 				</div>
@@ -71,7 +71,7 @@
 					<findpersonform:input path="userName" readonly="true" />
 				</div>
 				<div>
-					<label for="userDob">User Dob </label>
+					<label for="userDob">User Date Of Birth </label>
 				</div>
 				<div>
 					<findpersonform:input path="userDob" readonly="true" />
@@ -119,7 +119,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="child" items="${listAllChilds}">
+					<c:forEach var="child" items="${listofchildbyparent}">
 						<tr>
 							<td>${child.childId}</td>
 							<td>${child.childName}</td>

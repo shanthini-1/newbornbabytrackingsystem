@@ -5,6 +5,7 @@ package com.chainsys.newbornbabyhealthtrackingsystem.controller;
  */
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -81,35 +82,27 @@ public class ChildController {
 		childServices.removeChild(childId);
 		return "redirect:/admin/child/listallchilds";
 	}
-//------------------------------
-
-	/*@GetMapping("/childvaccinestatus")
-	public String getChildVaccineStautsByChildId(@RequestParam("childid") int childid, Model model) {
-		VaccinationStatusDTO vaccinationStatusDTO = childServices.getChildVaccinestatus(childid);
-		model.addAttribute("getChild", vaccinationStatusDTO.getChild());
-		model.addAttribute("vaccstautsdetails", vaccinationStatusDTO.getVaccinationStatus());
-		return "list-childs-vaccineStauts";
-	}*/
 
 //	----------------------------------
 
 	@GetMapping("/childhospitaldetails")
 	public String getChildHospitalDetails(@RequestParam("id") int childId, Model model) {
 		Child theChild = childServices.findById(childId);
-		model.addAttribute("childdetails", theChild.getChildId());
+		model.addAttribute("childDetails", theChild);
 		model.addAttribute("childHospitaldetails", hospitalServices.getHospitalById(theChild.getHospitalId()));
 		return "find-by-id-child-hospital-form";
 	}
+
 //	-----------------------
 	@GetMapping("/childdoctordetails")
 	public String getChilddoctorDetails(@RequestParam("id") int childId, Model model) {
 		Child theChild = childServices.findById(childId);
-		model.addAttribute("childdetails", theChild.getChildId());
+		model.addAttribute("childDetails", theChild.getChildId());
 		model.addAttribute("childDoctordetails", hospitalStaffServices.getHospitalStaffById(theChild.getDoctorId()));
 		return "find-by-id-child-doctor-form";
 	}
+
 //	------------------------
-//	check gauardian/parent
 	@GetMapping("/childparentdetails")
 	public String getChildParentDetails(@RequestParam("id") int childId, Model model) {
 		Child theChild = childServices.findById(childId);
@@ -118,65 +111,59 @@ public class ChildController {
 		model.addAttribute("childMotherdetails", personServices.getPersonById(theChild.getMotherId()));
 		return "find-by-id-child-parent-form";
 	}
-	
+
 	@GetMapping("/childguardiandetails")
 	public String getChildGuardianDetails(@RequestParam("id") int childId, Model model) {
 		Child theChild = childServices.findById(childId);
 		model.addAttribute("childdetails", theChild);
 		model.addAttribute("childFatherdetails", personServices.getPersonById(theChild.getFatherId()));
-//		model.addAttribute("childMotherdetails", personServices.getPersonById(theChild.getMotherId()));
-//		model.addAttribute("childguardiandetails", personServices.getPersonById(theChild.getGuardianId()));
+		model.addAttribute("childMotherdetails", personServices.getPersonById(theChild.getMotherId()));
+		model.addAttribute("childGuardianDetails", personServices.getPersonById(theChild.getGuardianId()));
 		return "find-by-id-child-guardian-form";
 	}
 //	-----------------------------
-	
+
 	@GetMapping("listchildbyhospitalid")
-	public String listChildByHospitalId(@RequestParam("id") int hospitalId,Model model) {
-		Hospital hospital =hospitalServices.getHospitalById(hospitalId);
+	public String listChildByHospitalId(@RequestParam("hospitalId") int hospitalId, Model model) {
+		Hospital hospital = hospitalServices.getHospitalById(hospitalId);
 		model.addAttribute("hospital", hospital);
-		List<Child> childs =childServices.getChildByHospitalId(hospitalId);
+		List<Child> childs = childServices.getChildByHospitalId(hospitalId);
 		model.addAttribute("listofchildbyhospital", childs);
 		return "list-childs-by-hospital";
 	}
+
 //	----------------------------------
 	@GetMapping("listchildbydoctorid")
-	public String listChildByDoctorId(@RequestParam("id") long doctorId,Model model) {
-		HospitalStaff hospitalStaff =hospitalStaffServices.getHospitalStaffById(doctorId);
+	public String listChildByDoctorId(@RequestParam("doctorId") Integer doctorId, Model model) {
+		Optional<HospitalStaff> hospitalStaff = hospitalStaffServices.getHospitalStaffById(doctorId);
 		model.addAttribute("hospitalDoctor", hospitalStaff);
-		List<Child> childs =childServices.getChildDoctorId(doctorId);
+		List<Child> childs = childServices.getChildDoctorId(doctorId);
 		model.addAttribute("listofchildbydoctor", childs);
 		return "list-childs-by-doctor";
 	}
+
 //	-------------------------------------
-//TODO: try to do this by both fatherandmother id select * from child where fatherid = & motherid
-	@GetMapping("listchildbyfatherid")
-	public String listChildByFatherId(@RequestParam("fId") long fatherId,@RequestParam("mId") long motherId,Model model) {
-		Person father =personServices.getPersonById(fatherId);
-		Person mother =personServices.getPersonById(motherId);
-		model.addAttribute("childsParent", father);
-		model.addAttribute("childsParent", mother);
-		List<Child> childs =childServices.getChildFatherMotherId(fatherId,motherId);
+// try to do this by both father and mother id select * from child where fatherid = & motherid
+	@GetMapping("listchildbyparentid")
+	public String listChildByFatherId(@RequestParam("fId") Integer fatherId, @RequestParam("mId") Integer motherId,
+			Model model) {
+		Person father = personServices.getPersonById(fatherId);
+		Person mother = personServices.getPersonById(motherId);
+		model.addAttribute("childsFather", father);
+		model.addAttribute("childsMother", mother);
+		List<Child> childs = childServices.getChildFatherMotherId(fatherId, motherId);
 		model.addAttribute("listofchildbyparent", childs);
 		return "list-childs-by-parent";
 	}
 
-	/*
-	 * @GetMapping("listchildbymotherid") public String
-	 * listChildByMotherId(@RequestParam("id") long parentId,Model model) { Person
-	 * person =personServices.getPersonById(parentId);
-	 * model.addAttribute("childParent", person); List<Child> childs
-	 * =childServices.getChildMotherId(parentId);
-	 * model.addAttribute("listofchildbyparent", childs); return
-	 * "list-childs-by-parent"; }
-	 */
 //	--------------------------
 	@GetMapping("listchildbyguardianid")
-	public String listChildByGuardianId(@RequestParam("id") long parentId,Model model) {
-		Person person =personServices.getPersonById(parentId);
-		model.addAttribute("childParent", person);
-		List<Child> childs =childServices.getChildGuardianId(parentId);
+	public String listChildByGuardianId(@RequestParam("gId") Integer guardianId, Model model) {
+		Person guardian = personServices.getPersonById(guardianId);
+		model.addAttribute("childGuardian", guardian);
+		List<Child> childs = childServices.getChildGuardianId(guardianId);
 		model.addAttribute("listofchildbyguardian", childs);
-		return "list-childs-by-guardian";
+		return "list-childs-by-gaurdian";
 	}
-	
+
 }

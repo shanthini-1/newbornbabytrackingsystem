@@ -5,6 +5,8 @@ package com.chainsys.newbornbabyhealthtrackingsystem.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,8 +39,13 @@ public class PersonController {
 		return "list-persons";
 	}
 
+	@GetMapping("/userfindform")
+	public String showUserFindForm() {
+		return "fetch-user-form";
+	}
+
 	@GetMapping("/fetchperson")
-	public String getPersonById(@RequestParam("id") long personId, Model model) {
+	public String getPersonById(@RequestParam("id") Integer personId, Model model) {
 		Person theperson = personServices.getPersonById(personId);
 		model.addAttribute("fetchPersonById", theperson);
 		return "find-by-id-person-form";
@@ -52,33 +59,48 @@ public class PersonController {
 	}
 
 	@PostMapping("addpersons")
-	public String addPerson(@ModelAttribute("addPerson") Person thePerson) {
+	public String addPerson(@Valid @ModelAttribute("addPerson") Person thePerson ,Error error) {
 		personServices.addPerson(thePerson);
 		return "redirect:/user/person/listallpersons";
 	}
 
+	@GetMapping("/usermodifyform")
+	public String showUserModifyForm() {
+		return "user-modify-form";
+	}
+
 	@GetMapping("/personmodifyform")
-	public String showPersonUpdateForm(@RequestParam("id") long personId, Model model) {
+	public String showPersonUpdateForm(@RequestParam("id") Integer personId, Model model) {
 		Person thePerson = personServices.getPersonById(personId);
 		model.addAttribute("modifyPerson", thePerson);
 		return "update-form-person";
 	}
 
 	@PostMapping("/modifypersons")
-	public String updatePerson(@ModelAttribute("modifyPerson") Person thePerson) {
+	public String updatePerson(@Valid @ModelAttribute("modifyPerson") Person thePerson ,Error error) {
 		personServices.addPerson(thePerson);
 		return "redirect:/user/person/listallpersons";
 	}
 
+	@GetMapping("/userdeleteform")
+	public String showUserdeleteForm() {
+		return "user-delete-form";
+	}
+
 	@GetMapping("/persondeleteform")
-	public String deletePerson(@RequestParam("id") long personId) {
+	public String deletePerson(@RequestParam("id") Integer personId) {
 		personServices.removePerson(personId);
 		return "redirect:/user/person/listallpersons";
 	}
 
 //	----------------------------
+	@GetMapping("/userlocationfindform")
+	public String showUserLocationFindForm() {
+		return "user-location-fetch";
+	}
+
 	@GetMapping("/getpersonlocation")
-	public String getPersonLocationById(@RequestParam("perId") long userId, Model model) {
+	public String getPersonLocationById(@RequestParam("perId") Integer userId, Model model) {
 		Person theperson = personServices.getPersonById(userId);
 		model.addAttribute("fetchPersonByIdA", theperson);
 		model.addAttribute("fetchPersonloctionById", locServices.getLocationcodeById(theperson.getPinCode()));

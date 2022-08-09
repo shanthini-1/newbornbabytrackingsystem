@@ -25,7 +25,7 @@ import javax.persistence.Table;
 public class Person {
 	@Id
 	@Column(name = "USER_ID")
-	private long userId;
+	private Integer userId;
 	@Column(name = "EMAIL")
 	private String email;
 	@Column(name = "USER_NAME")
@@ -95,11 +95,11 @@ public class Person {
 		this.guardianChilds = guardianChilds;
 	}
 
-	public long getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -211,7 +211,7 @@ public class Person {
 	}
 
 	public int hashCode() {
-		return (int) this.userId;
+		return this.userId;
 	}
 	
 }

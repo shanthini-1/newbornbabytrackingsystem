@@ -37,7 +37,7 @@ public class Hospital {
 	@Column(name="PIN_CODE")
 	private int pinCode;
 	@Column(name="CONTACT_PERSON_ID")
-	private long contactPersonId;
+	private Integer contactPersonId;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="CONTACT_PERSON_ID",nullable = false,insertable = false,updatable = false )
@@ -94,10 +94,10 @@ public class Hospital {
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
-	public long getContactPersonId() {
+	public Integer getContactPersonId() {
 		return contactPersonId;
 	}
-	public void setContactPersonId(long contactPersonId) {
+	public void setContactPersonId(Integer contactPersonId) {
 		this.contactPersonId = contactPersonId;
 	}
 	

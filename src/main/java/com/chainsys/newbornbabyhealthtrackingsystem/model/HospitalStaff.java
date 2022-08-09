@@ -30,7 +30,7 @@ public class HospitalStaff {
 	private int hospitalId;
 	@Id
 	@Column(name = "STAFF_ID")
-	private long staffId;
+	private Integer staffId;
 	@Column(name = "STAFF_ROLE")
 	private String staffRole;
 
@@ -72,11 +72,11 @@ public class HospitalStaff {
 		this.hospitalId = hospitalId;
 	}
 
-	public long getStaffId() {
+	public Integer getStaffId() {
 		return staffId;
 	}
 
-	public void setStaffId(long staffId) {
+	public void setStaffId(Integer staffId) {
 		this.staffId = staffId;
 	}
 

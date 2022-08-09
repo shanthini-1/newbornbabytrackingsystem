@@ -72,17 +72,17 @@ public class ChildServices {
 		return childRepo.findAllByHospitalId(hospitalId);
 	}
 
-	public List<Child> getChildDoctorId(long doctorId) {
+	public List<Child> getChildDoctorId(Integer doctorId) {
 		return childRepo.findAllByDoctorId(doctorId);
 		}
 
-	public List<Child> getChildFatherMotherId(long fatherId,long motherId) {
+	public List<Child> getChildFatherMotherId(Integer fatherId,Integer motherId) {
 		return childRepo.findAllByFatherIdAndMotherId(fatherId,motherId);
 	}
-//	public List<Child> getChildMotherId(long parentId) {
+//	public List<Child> getChildMotherId(Integer parentId) {
 //		return childRepo.findAllByMotherId(parentId);
 //	}
-	public List<Child> getChildGuardianId(long parentId) {
+	public List<Child> getChildGuardianId(Integer parentId) {
 		return childRepo.findAllByGuardianId(parentId);
 	}
 

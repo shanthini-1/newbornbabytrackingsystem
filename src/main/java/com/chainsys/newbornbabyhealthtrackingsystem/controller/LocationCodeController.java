@@ -33,37 +33,53 @@ public class LocationCodeController {
 		model.addAttribute("listAllLocation", locationCodeList);
 		return "list-locations";
 	}
-	
+
+	@GetMapping("/findlocationform")
+	public String showFindLocationForm() {
+		return "location-find-form";
+	}
+
 	@GetMapping("/fetchlocation")
-	public String getLocationById(@RequestParam("id") int locId, Model model ) {
+	public String getLocationById(@RequestParam("id") int locId, Model model) {
 		LocationCode theloc = locationCodeService.getLocationcodeById(locId);
 		model.addAttribute("fetchLocationById", theloc);
 		return "find-by-id-location-form";
 	}
+
 	@GetMapping("/addlocationform")
 	public String showLocationAddForm(Model model) {
 		LocationCode theLoc = new LocationCode();
 		model.addAttribute("addLocation", theLoc);
 		return "add-form-location";
 	}
+
 	@PostMapping("/addlocations")
 	public String addLocation(@ModelAttribute("addLocation") LocationCode theLoc) {
 		locationCodeService.addLocation(theLoc);
-		return"redirect:/admin/location/listalllocations";
+		return "redirect:/admin/location/listalllocations";
 	}
-	
+
+	@GetMapping("/modifylocationform")
+	public String showModifyLocationForm() {
+		return "location-modify-form";
+	}
+
 	@GetMapping("/locationmodifyform")
-	public String showLocationUpdateForm(@RequestParam("id") int locId ,Model model) {
+	public String showLocationUpdateForm(@RequestParam("id") int locId, Model model) {
 		LocationCode theLoc = locationCodeService.getLocationcodeById(locId);
 		model.addAttribute("modifyLocation", theLoc);
 		return "update-form-location";
 	}
+
 	@PostMapping("/modifylocations")
 	public String updateLocation(@ModelAttribute("modifyLocation") LocationCode theLoc) {
 		locationCodeService.addLocation(theLoc);
-		return"redirect:/admin/location/listalllocations";
+		return "redirect:/admin/location/listalllocations";
 	}
-	
+	@GetMapping("/deletelocationform")
+	public String showDeleteLocationForm() {
+		return "location-delete-form";
+	}
 	@GetMapping("/locationdeleteform")
 	public String deleteLocation(@RequestParam("id") int locId) {
 		locationCodeService.removeLocation(locId);

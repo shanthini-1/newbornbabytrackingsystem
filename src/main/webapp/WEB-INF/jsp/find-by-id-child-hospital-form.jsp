@@ -12,15 +12,16 @@
 <body>
 	<div id="root">
 		<div id="form">
+		<h3>Child Details</h3>
 			<findchildhospitalform:form action="" method="get"
-				modelAttribute="childdetails">
+				modelAttribute="childDetails">
 			<div>
 					<label for="childId">Child Id</label>
 				</div>
 				<div>
 					<findchildhospitalform:input path="childId" />
 				</div>
-				<%-- <div>
+				 <div>
 					<label for="childName">Child Name</label>
 				</div>
 				<div>
@@ -81,13 +82,14 @@
 					<findchildhospitalform:input path="motherId" />
 				</div>
 				 <div>
-					<label for="guardianId">Mother Id</label>
+					<label for="guardianId">Guardian Id</label>
 				</div>
 				<div>
 					<findchildhospitalform:input path="guardianId" />
-				</div> --%>
+				</div> 
 			</findchildhospitalform:form>
-			
+			<div>
+			<h3>Hospital Details</h3>
 			<findchildhospitalform:form action="" method="get"
 				modelAttribute="childHospitaldetails">
 				<div>
@@ -103,10 +105,10 @@
 					<findchildhospitalform:input path="hospitalName" />
 				</div>
 				<div>
-					<label for="hospitalPlotId">Hospital Plot No</label>
+					<label for="hospitalPlotNo">Hospital Plot No</label>
 				</div>
 				<div>
-					<findchildhospitalform:input path="hospitalPlotId" />
+					<findchildhospitalform:input path="hospitalPlotNo" />
 				</div>
 				<div>
 					<label for="hospitalStreet">Hospital Street</label>
@@ -129,7 +131,11 @@
 				<div>
 					<label for="contactPersonId">Contact Person Id</label>
 				</div>
+				<div>
+					<findchildhospitalform:input path="contactPersonId" />
+				</div>
 				</findchildhospitalform:form>
+				</div>
 		</div>
 	</div>
 </body>

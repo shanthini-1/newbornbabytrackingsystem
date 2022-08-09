@@ -27,11 +27,11 @@ public interface ChildRepository extends JpaRepository<Child, Integer>{
 	List<Child> findAll();
 
 	List<Child> findAllByHospitalId(int hospitalId);
-	List<Child> findAllByDoctorId(long doctorId);
+	List<Child> findAllByDoctorId(Integer doctorId);
 
-	List<Child> findAllByFatherIdAndMotherId(long fatherId,long motherId);
+	List<Child> findAllByFatherIdAndMotherId(Integer fatherId,Integer motherId);
 //	List<Child> findAllByMotherId(long parentId);
-	List<Child> findAllByGuardianId(long guardianId);
+	List<Child> findAllByGuardianId(Integer guardianId);
 	
 
 //	List<Child> findById(VaccinationStatus vaccinationStatus);

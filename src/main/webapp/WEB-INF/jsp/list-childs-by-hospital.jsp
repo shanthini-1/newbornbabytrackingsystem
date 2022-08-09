@@ -14,7 +14,7 @@
 	<div id="root">
 		<div id="form">
 			<findhospitalform:form action="" method="get"
-				modelAttribute="childHospitaldetails">
+				modelAttribute="hospital">
 				<div>
 					<label for="hospitalId">Hospital Id</label>
 				</div>
@@ -50,7 +50,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="child" items="${childdetails}">
+					<c:forEach var="child" items="${listofchildbyhospital}">
 						<tr>
 							<td>${child.childId}</td>
 							<td>${child.childName}</td>

@@ -29,8 +29,8 @@
 				</div>
 			</findhospitalstaffform:form>
 			<h3>Staff Details</h3>
-			<findhospitalstaffform:form action="" method="get"
-				modelAttribute="fetchPersonstaffById">
+			 <findhospitalstaffform:form action="" method="get"
+				modelAttribute="fetchstaffById">
 				<div>
 					<label for="userName">User Name</label>
 				</div>
@@ -90,7 +90,7 @@
 				<div>
 					<findhospitalstaffform:input path="pinCode" readonly="true" />
 				</div>
-				</findhospitalstaffform:form>
+				</findhospitalstaffform:form> 
 				<h3>Staff Hospital Details</h3>
 				<findhospitalstaffform:form action="" method="get"
 				modelAttribute="fetchHospitalById">

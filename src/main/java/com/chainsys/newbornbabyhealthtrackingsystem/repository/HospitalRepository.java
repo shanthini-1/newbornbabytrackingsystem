@@ -22,6 +22,6 @@ public interface HospitalRepository extends CrudRepository<Hospital, Integer> {
 
 	List<Hospital> findAll();
 	
-	Hospital findByContactPersonId(long id);
-	List<Hospital> findAllByContactPersonId(long cPerson);
+	Hospital findByContactPersonId(Integer id);
+	List<Hospital> findAllByContactPersonId(Integer cPerson);
 }

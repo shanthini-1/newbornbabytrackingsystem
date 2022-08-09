@@ -4,6 +4,7 @@
 package com.chainsys.newbornbabyhealthtrackingsystem.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ import com.chainsys.newbornbabyhealthtrackingsystem.services.PersonServices;
 @Controller
 @RequestMapping("/admin/hospitalstaff")
 public class HospitalStaffController {
+//	public String redirectPage = "redirect:/admin/hospitalstaff/listallhospitalstaffs";
 	@Autowired
 	private HospitalStaffServices hospitalStaffServices;
 	@Autowired
@@ -33,20 +35,38 @@ public class HospitalStaffController {
 	@Autowired
 	private PersonServices personServices;
 
+	/*
+	 * list all hospital staff
+	 */
 	@GetMapping("/listallhospitalstaffs")
 	public String getAllHospitalStaffs(Model model) {
 		List<HospitalStaff> hospitalStaffList = hospitalStaffServices.getHospitalStaffs();
 		model.addAttribute("listAllHospitalStaffs", hospitalStaffList);
 		return "list-hospital-staff";
 	}
-
-	@GetMapping("/fetchhospitalstaff")
-	public String getHospitalStaffById(@RequestParam("id") int hospitalId, Model model) {
-		HospitalStaff theHospitalStaff = hospitalStaffServices.getHospitalStaffById(hospitalId);
-		model.addAttribute("fetchHospitalStaffById", theHospitalStaff);
-		return "find-by-id-hospital-staff-form";
+//-------------------------------
+	/*
+	 * fetch hospital staff by staffId - staffId giving form to find existence
+	 */
+	@GetMapping("/fetchstaffidform")
+	public String showHospitalStaffFindForm() {
+		return "hospitalstaff-find-form";
 	}
 
+	/*
+	 * fetch hospital staff by staffId
+	 */
+	@GetMapping("/gethospitalstaff")
+	public String getHospitalStaffById(@RequestParam("id") int staffId, Model model) {
+		Optional<HospitalStaff> theHospitalStaff = hospitalStaffServices.getHospitalStaffById(staffId);
+		model.addAttribute("fetchStaffDataById", theHospitalStaff);
+		return "find-by-id-staff-form";
+	}
+//	-------------------------------------
+
+	/*
+	 * add staff form to enter details
+	 */
 	@GetMapping("/addhospitalstaffform")
 	public String showHospitalStaffAddForm(Model model) {
 		HospitalStaff theHospitalStaff = new HospitalStaff();
@@ -54,38 +74,79 @@ public class HospitalStaffController {
 		return "add-form-hospital-staff";
 	}
 
+	/*
+	 * list staffs after addind staff details
+	 */
 	@PostMapping("addhospitalstaffs")
 	public String addHospitalStaff(@ModelAttribute("addHospitalStaff") HospitalStaff theHospitalStaff) {
 		hospitalStaffServices.addHospitalStaff(theHospitalStaff);
 		return "redirect:/admin/hospitalstaff/listallhospitalstaffs";
 	}
 
+	/*
+	 * update staff details by staffId - staff id giving form to find
+	 */
 	@GetMapping("/hospitalstaffmodifyform")
-	public String showHospitalStaffUpdateForm(@RequestParam("id") int hospitalId, Model model) {
-		HospitalStaff theHospitalStaff = hospitalStaffServices.getHospitalStaffById(hospitalId);
+	public String showHospitalStaffmodifyForm() {
+		return "hospitalstaff-modify-form";
+	}
+
+	/*
+	 * update staff details by staffId - staff details giving form
+	 */
+	@GetMapping("/hospitalstaffupdateform")
+	public String showHospitalStaffUpdate(@RequestParam("id") int hospitalId, Model model) {
+		Optional<HospitalStaff> theHospitalStaff = hospitalStaffServices.getHospitalStaffById(hospitalId);
 		model.addAttribute("modifyHospitalStaff", theHospitalStaff);
 		return "update-form-hospital-staff";
 	}
 
+	/*
+	 * update staff details and list staffs after updating
+	 */
 	@PostMapping("/modifyhospitalstaffs")
 	public String updateHospitalStaff(@ModelAttribute("modifyHospitalStaff") HospitalStaff theHospitalStaff) {
 		hospitalStaffServices.addHospitalStaff(theHospitalStaff);
 		return "redirect:/admin/hospitalstaff/listallhospitalstaffs";
 	}
 
+	/*
+	 * Delete hospital staff by staffId form
+	 */
+	@GetMapping("/showhospitalstaffdeleteform")
+	public String showHospitalStaffRemoveForm() {
+		return "hospitalstaff-delete-form";
+	}
+
+	/*
+	 * list show after staff deleted
+	 */
 	@GetMapping("/hospitalstaffdeleteform")
-	public String deleteHospitalStaff(@RequestParam("id") long hospitalStaffId) {
+	public String deleteHospitalStaff(@RequestParam("id") Integer hospitalStaffId) {
 		hospitalStaffServices.removeHospitalStaff(hospitalStaffId);
 		return "redirect:/admin/hospitalstaff/listallhospitalstaffs";
 	}
-//	---------------------------------
-	@GetMapping("/gethoscontactpersondetails")
-	public String getHospitalContactPersonById(@RequestParam("id") long id, Model model) {
 
-		HospitalStaff thehosstaff = hospitalStaffServices.getHospitalStaffById(id);
+//	---------------------------------
+	/*
+	 * fetch staff profile details by Staff id - id giving form
+	 */
+
+	@GetMapping("/hospitalstaffdetailsfindform")
+	public String showHospitalStaffDetailsFindForm() {
+		return "hospital-staff-details-form";
+	}
+
+	/*
+	 * display fetched staff profile details by Staff id
+	 */
+	@GetMapping("/gethospitalstaffpersondetails")
+	public String getHospitalStaffDetailsById(@RequestParam("id") Integer id, Model model) {
+
+		Optional<HospitalStaff> thehosstaff = hospitalStaffServices.getHospitalStaffById(id);
 		model.addAttribute("fetchHospitalStaffById", thehosstaff);
-		model.addAttribute("fetchHospitalById", hospitalServices.getHospitalById(thehosstaff.getHospitalId()));
-		model.addAttribute("fetchPersonstaffById", personServices.getPersonById(thehosstaff.getStaffId()));
+		model.addAttribute("fetchHospitalById", hospitalServices.getHospitalById(thehosstaff.get().getHospitalId()));
+		model.addAttribute("fetchstaffById", personServices.getPersonById(thehosstaff.get().getStaffId()));
 		return "find-by-id-hospital-staff-form";
 	}
 }

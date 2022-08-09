@@ -38,13 +38,13 @@ public class Child {
 	@Column(name = "HOSPITAL_ID")
 	private int hospitalId;
 	@Column(name = "DOCTOR_ID")
-	private long doctorId;
+	private Integer doctorId;
 	@Column(name = "FATHER_ID")
-	private long fatherId;
+	private Integer fatherId;
 	@Column(name = "MOTHER_ID")
-	private long motherId;
+	private Integer motherId;
 	@Column(name = "GUARDIAN_ID")
-	private long guardianId;
+	private Integer guardianId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "HOSPITAL_ID", nullable = false, insertable = false, updatable = false)
@@ -154,11 +154,11 @@ public class Child {
 		this.hospitalId = hospitalId;
 	}
 
-	public long getDoctorId() {
+	public Integer getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(long doctorId) {
+	public void setDoctorId(Integer doctorId) {
 		this.doctorId = doctorId;
 	}
 
@@ -170,27 +170,27 @@ public class Child {
 		this.bloodGroup = bloodGroup;
 	}
 
-	public long getFatherId() {
+	public Integer getFatherId() {
 		return fatherId;
 	}
 
-	public void setFatherId(long fatherId) {
+	public void setFatherId(Integer fatherId) {
 		this.fatherId = fatherId;
 	}
 
-	public long getMotherId() {
+	public Integer getMotherId() {
 		return motherId;
 	}
 
-	public void setMotherId(long motherId) {
+	public void setMotherId(Integer motherId) {
 		this.motherId = motherId;
 	}
 
-	public long getGuardianId() {
+	public Integer getGuardianId() {
 		return guardianId;
 	}
 
-	public void setGuardianId(long guardianId) {
+	public void setGuardianId(Integer guardianId) {
 
 		this.guardianId = guardianId;
 	}

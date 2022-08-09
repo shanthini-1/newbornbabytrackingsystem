@@ -37,6 +37,11 @@ public class HospitalController {
 		return "list-hospital";
 	}
 
+	@GetMapping("/hospitalfindform")
+	public String showHospitalFindForm() {
+		return "hospital-find-form";
+	}
+
 	@GetMapping("/fetchhospital")
 	public String getHospitalById(@RequestParam("id") int hospitalId, Model model) {
 		Hospital thehospital = hospitalServices.getHospitalById(hospitalId);
@@ -56,6 +61,10 @@ public class HospitalController {
 		hospitalServices.addHospital(theHospital);
 		return "redirect:/admin/hospital/listallhospitals";
 	}
+	@GetMapping("/showhospitalupdateform")
+	public String showHospitalModifyForm() {
+		return "hospital-modify-form";
+	}
 
 	@GetMapping("/hospitalmodifyform")
 	public String showHospitalUpdateForm(@RequestParam("id") int hospitalId, Model model) {
@@ -69,18 +78,28 @@ public class HospitalController {
 		hospitalServices.addHospital(theHospital);
 		return "redirect:/admin/hospital/listallhospitals";
 	}
+	@GetMapping("/showhospitaldeleteform")
+	public String HospitalDeleteForm() {
+		return "hospital-delete-form";
+	}
 
 	@GetMapping("/hospitaldeleteform")
 	public String deleteHospital(@RequestParam("id") int hospitalId) {
 		hospitalServices.removeHospital(hospitalId);
 		return "redirect:/admin/hospital/listallhospitals";
 	}
+
 //	--------------------------------------
-	@GetMapping("/gethoscontactperson")
-	public String getHospitalContactPersonById(@RequestParam("id") int id, Model model) {
-		List<Hospital> hospitals=hospitalServices.getHospitalsByContactperson(id);
-		model.addAttribute("listHosByConPrsnId", hospitals);
+	@GetMapping("/hoscontactfindform")
+	public String showContactPersonFindForm() {
+		return "hospital-contactperson-form";
+	}
+
+	@GetMapping("/gethospitalcontactperson")
+	public String getHospitalContactPersonById(@RequestParam("id") Integer id, Model model) {
+		List<Hospital> hospitals = hospitalServices.getHospitalsByContactperson(id);
+		model.addAttribute("listHosByConPersonId", hospitals);
 		model.addAttribute("fetchConPerfromPersonById", personServices.getPersonById(id));
-		return "find-by-id-hospital-person-form";
+		return "list-hospitals-by-contact-person-form";
 	}
 }
