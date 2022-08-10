@@ -1,4 +1,4 @@
-find-by-id-child-form.jsp<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="updatechildform"
@@ -87,7 +87,7 @@ find-by-id-child-form.jsp<%@ page language="java" contentType="text/html; charse
 					<updatechildform:input path="guardianId" />
 				</div>
 				<div>
-					<updatechildform:button>Add Child</updatechildform:button>
+					<updatechildform:button>Update Child</updatechildform:button>
 				</div>
 			</updatechildform:form>
 

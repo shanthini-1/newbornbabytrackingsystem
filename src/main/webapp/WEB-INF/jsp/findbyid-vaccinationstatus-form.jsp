@@ -1,69 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="addform"
-	uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="viewform" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add vaccine form</title>
+<title>find Vaccine</title>
 </head>
 <body>
-	<addform:form action="addvaccinationstatuss" method="post"
-		modelAttribute="addvaccinationStatus">
-		<div>
+	<div id="root">
+		<div id="form">
+		<viewform:form action="" method="get" modelAttribute="findVaccinationStatusById">
+			<div>
 			<label for="childId">child Id</label>
 		</div>
 		<div>
-			<addform:input path="childId" />
+			<viewform:input path="childId" readonly="true"/>
 		</div>
 		<div>
 			<label for="vaccineId">vaccine Id</label>
 		</div>
 		<div>
-			<addform:input path="vaccineId" />
+			<viewform:input path="vaccineId" readonly="true"/>
 		</div>
 		<div>
 			<label for="dateOfVaccination">Date of Vaccination </label>
 		</div>
 		<div>
-			<addform:input path="dateOfVaccination" />
+			<viewform:input path="dateOfVaccination" readonly="true"/>
 		</div>
 		<div>
 			<label for="vaccinatedStatus">Vaccinated Status</label>
 		</div>
 		<div>
-			<addform:input path="vaccinatedStatus" />
+			<viewform:input path="vaccinatedStatus" readonly="true"/>
 		</div>
 		<div>
 			<label for="hospitalId">Hospital Id</label>
 		</div>
 		<div>
-			<addform:input path="hospitalId" />
+			<viewform:input path="hospitalId" readonly="true"/>
 		</div>
 		<div>
 			<label for="attenderId">Attender Id</label>
 		</div>
 		<div>
-			<addform:input path="attenderId" />
+			<viewform:input path="attenderId" readonly="true"/>
 		</div>
 		<div>
 			<label for="babyWeight">Baby Weight</label>
 		</div>
 		<div>
-			<addform:input path="babyWeight" />
+			<viewform:input path="babyWeight" readonly="true"/>
 		</div>
 		<div>
 			<label for="babyHeight">Baby Height</label>
 		</div>
 		<div>
-			<addform:input path="babyHeight" />
+			<viewform:input path="babyHeight" readonly="true"/>
 		</div>
-		<div>
-			<addform:button>Add Vaccination status</addform:button>
+		</viewform:form>
 		</div>
-	</addform:form>
+		</div>
 </body>
 </html>

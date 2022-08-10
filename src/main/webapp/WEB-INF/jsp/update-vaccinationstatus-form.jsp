@@ -1,18 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="addform"
-	uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="addform" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add vaccine form</title>
+<title>modify vaccination status</title>
 </head>
 <body>
-	<addform:form action="addvaccinationstatuss" method="post"
-		modelAttribute="addvaccinationStatus">
+<addform:form action="modifyvaccinationstatuschild" method="post"
+		modelAttribute="modifyvaccinationStatus">
 		<div>
 			<label for="childId">child Id</label>
 		</div>
@@ -62,7 +59,7 @@
 			<addform:input path="babyHeight" />
 		</div>
 		<div>
-			<addform:button>Add Vaccination status</addform:button>
+			<addform:button>Update Vaccination status</addform:button>
 		</div>
 	</addform:form>
 </body>

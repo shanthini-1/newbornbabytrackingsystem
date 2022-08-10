@@ -30,7 +30,7 @@ public class VaccinationStatusServices {
 	public List<VaccinationStatus> getVaccinationStatus() {
 		return vaccinationStatusRepo.findAll();
 	}
-
+//doubt
 	public Optional<VaccinationStatus> getVaccinationStatussById(ChildVaccineCompositeTable compId) {
 		return vaccinationStatusRepo.findById(compId);
 	}
@@ -47,7 +47,9 @@ public class VaccinationStatusServices {
 		return vaccinationStatusRepo.findByVaccineId(vaccineid);
 	}
 
-
+	public List<VaccinationStatus> getVaccineListByChildId(int childId) {
+		return vaccinationStatusRepo.findByChildId(childId);
+	}
 	
 	
 }

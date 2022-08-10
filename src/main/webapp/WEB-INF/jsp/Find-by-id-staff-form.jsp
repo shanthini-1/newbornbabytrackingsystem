@@ -14,7 +14,7 @@
 		<div id="form">
 		<h3>Staff </h3>
 			<findhospitalstaffform:form action="" method="get"
-				modelAttribute="fetchStaffDataById">
+				modelAttribute="fetchStaffDetailsById">
 				<div>
 					<label for="staffId">Staff Id</label>
 				</div>

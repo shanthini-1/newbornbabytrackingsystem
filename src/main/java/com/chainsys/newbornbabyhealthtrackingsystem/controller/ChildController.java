@@ -43,6 +43,10 @@ public class ChildController {
 		model.addAttribute("listAllChilds", childList);
 		return "list-childs";
 	}
+	@GetMapping("/fetchchildform")
+	public String showChildDetailForm() {
+		return "fetch-child-by-id-form";
+	}
 
 	@GetMapping("/fetchchild")
 	public String getChildById(@RequestParam("id") int childId, Model model) {
@@ -63,20 +67,26 @@ public class ChildController {
 		childServices.addChild(theChild);
 		return "redirect:/admin/child/listallchilds";
 	}
-
+	@GetMapping("/updatechildform")
+	public String showChildUpdateDetailForm() {
+		return "update-child-by-id-form";
+	}
 	@GetMapping("/childmodifyform")
 	public String showChildUpdateForm(@RequestParam("id") int childId, Model model) {
 		Child theChild = childServices.findById(childId);
 		model.addAttribute("modifyChild", theChild);
 		return "update-form-child";
 	}
-
+	
 	@PostMapping("/modifychilds")
-	public String updateChild(@ModelAttribute("modifyChild") Child theChild) {
+	public String updateChildForm(@ModelAttribute("modifyChild") Child theChild) {
 		childServices.addChild(theChild);
 		return "redirect:/admin/child/listallchilds";
 	}
-
+	@GetMapping("/Deletechildform")
+	public String showChildDeleteDetailForm() {
+		return "delete-child-by-id-form";
+	}
 	@GetMapping("/childdeleteform")
 	public String deleteChild(@RequestParam("id") int childId) {
 		childServices.removeChild(childId);
@@ -84,7 +94,10 @@ public class ChildController {
 	}
 
 //	----------------------------------
-
+	@GetMapping("/fetchhospitalandchildform")
+	public String showHospitalChildDetailForm() {
+		return "fetch-hospital-child-form";
+	}
 	@GetMapping("/childhospitaldetails")
 	public String getChildHospitalDetails(@RequestParam("id") int childId, Model model) {
 		Child theChild = childServices.findById(childId);
@@ -94,6 +107,10 @@ public class ChildController {
 	}
 
 //	-----------------------
+	@GetMapping("/fetchdoctorandchildform")
+	public String showDoctorChildDetailForm() {
+		return "fetch-doctor-child-form";
+	}
 	@GetMapping("/childdoctordetails")
 	public String getChilddoctorDetails(@RequestParam("id") int childId, Model model) {
 		Child theChild = childServices.findById(childId);
@@ -103,6 +120,10 @@ public class ChildController {
 	}
 
 //	------------------------
+	@GetMapping("/fetchchildandparent")
+	public String showChildparentDetailForm() {
+		return "fetch-parent-child-form";
+	}
 	@GetMapping("/childparentdetails")
 	public String getChildParentDetails(@RequestParam("id") int childId, Model model) {
 		Child theChild = childServices.findById(childId);
@@ -112,6 +133,10 @@ public class ChildController {
 		return "find-by-id-child-parent-form";
 	}
 
+	@GetMapping("/fetchchildandguardian")
+	public String showChildGuardianDetailForm() {
+		return "fetch-guardian-child-form";
+	}
 	@GetMapping("/childguardiandetails")
 	public String getChildGuardianDetails(@RequestParam("id") int childId, Model model) {
 		Child theChild = childServices.findById(childId);
@@ -122,7 +147,10 @@ public class ChildController {
 		return "find-by-id-child-guardian-form";
 	}
 //	-----------------------------
-
+	@GetMapping("/fetchchildbyhospitalid")
+	public String showChildHospitalFindForm() {
+		return "list-child-by-hospital-form";
+	}
 	@GetMapping("listchildbyhospitalid")
 	public String listChildByHospitalId(@RequestParam("hospitalId") int hospitalId, Model model) {
 		Hospital hospital = hospitalServices.getHospitalById(hospitalId);
@@ -133,6 +161,10 @@ public class ChildController {
 	}
 
 //	----------------------------------
+	@GetMapping("/fetchchildbydoctorid")
+	public String showChildDoctorFindForm() {
+		return "list-child-by-doctor-form";
+	}
 	@GetMapping("listchildbydoctorid")
 	public String listChildByDoctorId(@RequestParam("doctorId") Integer doctorId, Model model) {
 		Optional<HospitalStaff> hospitalStaff = hospitalStaffServices.getHospitalStaffById(doctorId);
@@ -144,6 +176,10 @@ public class ChildController {
 
 //	-------------------------------------
 // try to do this by both father and mother id select * from child where fatherid = & motherid
+	@GetMapping("/fetchchildbyparentid")
+	public String showChildParentFindForm() {
+		return "list-child-by-parent-form";
+	}
 	@GetMapping("listchildbyparentid")
 	public String listChildByFatherId(@RequestParam("fId") Integer fatherId, @RequestParam("mId") Integer motherId,
 			Model model) {
@@ -157,6 +193,11 @@ public class ChildController {
 	}
 
 //	--------------------------
+	
+	@GetMapping("/fetchchildbyguardian")
+	public String showChildGuardianFindForm() {
+		return "list-child-by-guardian-form";
+	}
 	@GetMapping("listchildbyguardianid")
 	public String listChildByGuardianId(@RequestParam("gId") Integer guardianId, Model model) {
 		Person guardian = personServices.getPersonById(guardianId);

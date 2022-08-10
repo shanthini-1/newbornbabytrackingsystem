@@ -82,7 +82,7 @@
 						<findchildprentform:input path="motherId" />
 					</div>
 					<div>
-						<label for="guardianId">Mother Id</label>
+						<label for="guardianId">guardian Id</label>
 					</div>
 					<div>
 						<findchildprentform:input path="guardianId" />
@@ -95,7 +95,7 @@
 					modelAttribute="childGuardianDetails">
 					<table border="2" style="border-color: blue;">
 						<thead>
-						<caption>father Details</caption>
+						<caption>Guardian Details</caption>
 						<tr>
 							<th>User Id</th>
 							<th>User Name</th>

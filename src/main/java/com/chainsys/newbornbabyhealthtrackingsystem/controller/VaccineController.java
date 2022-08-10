@@ -38,6 +38,11 @@ public class VaccineController {
 		return "list-vaccines";
 	}
 
+	@GetMapping("/getvaccine")
+	public String fetchVaccineform() {
+		return " fetch-vaccine-form";
+	}
+
 	@GetMapping("/fetchvaccine")
 	public String getVaccineById(@RequestParam("id") int vacId, Model model) {
 		Vaccine theVac = vacServices.getVaccinesById(vacId);
@@ -58,6 +63,11 @@ public class VaccineController {
 		return "redirect:/admin/vaccine/listallvaccines";
 	}
 
+	@GetMapping("/modifyvaccineform")
+	public String updateVaccineform() {
+		return "modify-vaccine-form";
+	}
+
 	@GetMapping("/vaccinemodifyform")
 	public String showVaccineUpdateForm(@RequestParam("id") int id, Model model) {
 		Vaccine theVac = vacServices.getVaccinesById(id);
@@ -69,6 +79,11 @@ public class VaccineController {
 	public String modifyingVaccine(@ModelAttribute("modifyvaccine") Vaccine vac) {
 		vacServices.addVaccine(vac);
 		return "redirect:/admin/vaccine/listallvaccines";
+	}
+
+	@GetMapping("/deletevaccine")
+	public String deleteVaccineform() {
+		return " delete-vaccine-form";
 	}
 
 	@GetMapping("/vaccinedeleteform")

@@ -1,4 +1,4 @@
-/**
+ /**
  * 
  */
 package com.chainsys.newbornbabyhealthtrackingsystem.repository;
@@ -6,11 +6,9 @@ package com.chainsys.newbornbabyhealthtrackingsystem.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.chainsys.newbornbabyhealthtrackingsystem.model.Child;
-//import com.chainsys.newbornbabyhealthtrackingsystem.model.VaccinationStatus;
 
 /**
  * @author shan3102
@@ -30,7 +28,6 @@ public interface ChildRepository extends JpaRepository<Child, Integer>{
 	List<Child> findAllByDoctorId(Integer doctorId);
 
 	List<Child> findAllByFatherIdAndMotherId(Integer fatherId,Integer motherId);
-//	List<Child> findAllByMotherId(long parentId);
 	List<Child> findAllByGuardianId(Integer guardianId);
 	
 

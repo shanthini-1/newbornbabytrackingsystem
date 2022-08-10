@@ -6,8 +6,11 @@ package com.chainsys.newbornbabyhealthtrackingsystem.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.ChildVaccineCompositeTable;
@@ -42,7 +45,18 @@ public class VaccinationStatus {
 	@Column(name = "BABY_HEIGHT")
 	private double babyHeight;
 
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="VACCINE_ID", nullable = false,insertable = false,updatable = false)
+	private Vaccine vaccine;
 	
+	public Vaccine getVaccine() {
+		return vaccine;
+	}
+
+	public void setVaccine(Vaccine vaccine) {
+		this.vaccine = vaccine;
+	}
+
 	public int getChildId() {
 		return childId;
 	}

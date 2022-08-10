@@ -56,10 +56,11 @@ public class HospitalStaffController {
 	/*
 	 * fetch hospital staff by staffId
 	 */
+	
 	@GetMapping("/gethospitalstaff")
-	public String getHospitalStaffById(@RequestParam("id") int staffId, Model model) {
+	public String getHospitalStaffById(@RequestParam("id") Integer staffId, Model model) {
 		Optional<HospitalStaff> theHospitalStaff = hospitalStaffServices.getHospitalStaffById(staffId);
-		model.addAttribute("fetchStaffDataById", theHospitalStaff);
+		model.addAttribute("fetchStaffDetailsById", theHospitalStaff);
 		return "find-by-id-staff-form";
 	}
 //	-------------------------------------

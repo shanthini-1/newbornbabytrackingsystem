@@ -17,7 +17,6 @@
 	<li><a href="/child-firstpage.jsp">Child</a>
 	<li><a href="/vaccine-firstpage.jsp">Vaccine</a>
 	<li><a href="/vaccine-status-firstpage.jsp">Vaccination Status</a>
-	<li><a href="/home.html">Home</a>
 	</ul>
 </body>
 </html>
