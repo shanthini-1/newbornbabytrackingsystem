@@ -30,13 +30,13 @@
 					<label for="childDob">Child Dob </label>
 				</div>
 				<div>
-					<addchildform:input path="childDob" />
+					<addchildform:input path="childDob" type="date"/>
 				</div>
 				<div>
 					<label for="gender">Gender</label>
 				</div>
 				<div>
-					<addchildform:input path="gender" />
+					<addchildform:input path="gender"  />
 				</div>
 				<div>
 					<label for="birthWeight">Birth Weight</label>

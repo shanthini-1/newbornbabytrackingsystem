@@ -31,8 +31,11 @@
 				<h3>list all children by vaccine id from vaccine status</h3>
 		<li><a href="/admin/vaccinationstatus/listchildrenbyvacid">Fetch
 				By Vacccine Id</a>
-				<h3>Details of child and vaccine by id</h3>
+				<h3>Details of child and vaccine list by child id</h3>
 		<li><a href="/admin/vaccinationstatus/detailsofchildvaccine">Details
+				child vaccines</a>
+						<h3>Details of vaccine and children list by vaccine id</h3>
+		<li><a href="/admin/vaccinationstatus/childvaccinedetails">Details
 				child vaccines</a>
 				
 	</ul>

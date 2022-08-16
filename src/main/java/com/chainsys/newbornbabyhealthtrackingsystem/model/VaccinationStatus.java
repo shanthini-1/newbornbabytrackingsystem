@@ -46,9 +46,20 @@ public class VaccinationStatus {
 	private double babyHeight;
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="VACCINE_ID", nullable = false,insertable = false,updatable = false)
+	@JoinColumn(name = "VACCINE_ID", nullable = false, insertable = false, updatable = false)
 	private Vaccine vaccine;
-	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CHILD_ID", nullable = false, insertable = false, updatable = false)
+	private Child child;
+
+	public Child getChild() {
+		return child;
+	}
+
+	public void setChild(Child child) {
+		this.child = child;
+	}
+
 	public Vaccine getVaccine() {
 		return vaccine;
 	}

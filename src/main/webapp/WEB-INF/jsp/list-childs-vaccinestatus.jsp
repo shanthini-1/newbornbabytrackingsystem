@@ -66,31 +66,30 @@
 						<th>Child Name</th>
 						<th>Child Dob</th>
 						<th>Gender</th>
-						<th>Birth Weight</th>
-						<th>Birth Place</th>
-						<th>Blood Group</th>
-						<th>Hospital Id</th>
-						<th>Doctor Id</th>
-						<th>Father Id</th>
-						<th>Mother Id</th>
-						<th>Guardian Id</th>
+						<th>Vaccine Id</th>
+						<th>dateOfVaccination</th>
+						<th>vaccinatedStatus</th>
+						<th>hospitalId</th>
+						<th>attenderId</th>
+						<th>babyWeight</th>
+						<th>babyHeigh</th>
+						
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="child" items="${vacchilddetailslist}">
+					<c:forEach var="vac" items="${childvacdetailslist}">
 						<tr>
-							<td>${child.childId}</td>
-							<td>${child.childName}</td>
-							<td>${child.childDob}</td>
-							<td>${child.gender}</td>
-							<td>${child.birthWeight}</td>
-							<td>${child.birthPlace}</td>
-							<td>${child.bloodGroup}</td>
-							<td>${child.hospitalId}</td>
-							<td>${child.doctorId}</td>
-							<td>${child.fatherId}</td>
-							<td>${child.motherId}</td>
-							<td>${child.guardianId}</td>
+							<td>${vac.child.childId}</td>
+							<td>${vac.child.childName}</td>
+							<td>${vac.child.childDob}</td>
+							<td>${vac.child.gender}</td>
+							<td>${vac.dateOfVaccination}</td>
+							<td>${vac.vaccinatedStatus}</td>
+							<td>${vac.hospitalId}</td>
+							<td>${vac.attenderId}</td>
+							<td>${vac.babyWeight}</td>
+							<td>${vac.babyHeight}</td>
+							
 						</tr>
 					</c:forEach>
 				</tbody>

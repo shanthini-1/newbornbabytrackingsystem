@@ -3,7 +3,8 @@
  */
 package com.chainsys.newbornbabyhealthtrackingsystem.model;
 
-import java.util.Date;
+//import java.time.LocalDate;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

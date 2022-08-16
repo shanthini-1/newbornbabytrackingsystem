@@ -18,7 +18,7 @@ public class Vaccine {
 	@Id
 	@Column(name = "VACCINE_ID")
 	private int vaccineId;
-	@Column(name = "WEEK")
+	@Column(name = "MONTH_TO_VACCINATE")
 	private int week;
 	@Column(name = "VACCINE_NAME")
 	private String vaccineName;
@@ -39,12 +39,14 @@ public class Vaccine {
 		this.vaccineId = vaccineId;
 	}
 
-	public int getWeek() {
+	
+
+	public int getMonthToVaccinate() {
 		return week;
 	}
 
-	public void setWeek(int week) {
-		this.week = week;
+	public void setMonthToVaccinate(int monthToVaccinate) {
+		this.week = monthToVaccinate;
 	}
 
 	public String getVaccineName() {

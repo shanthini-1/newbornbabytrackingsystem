@@ -10,10 +10,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chainsys.newbornbabyhealthtrackingsystem.dto.PersonLocationDTO;
-import com.chainsys.newbornbabyhealthtrackingsystem.model.LocationCode;
+import com.chainsys.newbornbabyhealthtrackingsystem.model.Login;
 import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
-import com.chainsys.newbornbabyhealthtrackingsystem.repository.LocationCodeRepository;
+import com.chainsys.newbornbabyhealthtrackingsystem.repository.LoginRepository;
 import com.chainsys.newbornbabyhealthtrackingsystem.repository.PersonRepository;
 
 /**
@@ -24,14 +23,16 @@ import com.chainsys.newbornbabyhealthtrackingsystem.repository.PersonRepository;
 public class PersonServices {
 	@Autowired
 	private PersonRepository personRepo;
-	
+	@Autowired
+	private LoginRepository loginRepository;
+
 	public List<Person> getPersons() {
 		return personRepo.findAll();
 	}
 
-	public Person addPerson(Person thePerson) {
-		return personRepo.save(thePerson);		
-	}
+//	public Person addPerson(Person thePerson) { 
+//		return personRepo.save(thePerson);		
+//	}
 
 	public void removePerson(Integer personId) {
 		personRepo.deleteById(personId);
@@ -41,5 +42,16 @@ public class PersonServices {
 		return personRepo.findByUserId(personId);
 	}
 
-
+	@Transactional
+	public Person addPerson(Person thePerson) {
+		thePerson = personRepo.save(thePerson);
+		Login login = new Login();
+//			login.setUserId(thePerson.getUserId());
+			login.setEmail(thePerson.getEmail());
+			login.setRegisterationDate();
+			login.setPassWord(thePerson.getPassWord());
+			loginRepository.save(login);	
+		return thePerson;
+	
+	}
 }

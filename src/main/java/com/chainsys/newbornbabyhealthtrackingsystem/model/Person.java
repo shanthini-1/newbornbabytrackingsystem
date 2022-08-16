@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -69,8 +70,18 @@ public class Person {
 	private List<Child> motherChilds;
 	@OneToMany(mappedBy = "guardian")
 	private List<Child> guardianChilds;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="USER_EMAIL",nullable = false,insertable = false,updatable = false)
+	private Login login;
 	
-	
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
+	}
+
 	public List<Child> getFatherChilds() {
 		return fatherChilds;
 	}

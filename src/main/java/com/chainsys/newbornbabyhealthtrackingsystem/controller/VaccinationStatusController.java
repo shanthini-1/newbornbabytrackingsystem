@@ -3,7 +3,6 @@
  */
 package com.chainsys.newbornbabyhealthtrackingsystem.controller;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -139,43 +138,31 @@ public class VaccinationStatusController {
 	}
 
 //------------------------------
+	@GetMapping("/childvaccinedetails")
+	public String detailsOfVaccinebychild() {
+		return "vaccineslistchild";
+	}
+	@GetMapping("/childvaccinestatuslistbychild")
 
-//	@GetMapping("/childvaccinestatuslistbychild")
-//
-//	public String listChildbyVaccine(@RequestParam("vaccineId") int vaccineId, Model model) {
-//		
-//		Vaccine vac = vaccineServices.getVaccinesById(vaccineId);
-//		model.addAttribute("getVaccine", vac);
-//		List VaccinationStatus> vaccinationStatus = vaccinationStatusService.getChildrenListByVacId(vaccineId);
-//		model.addAttribute("getVaccine", vaccinationStatus);
-//		Optional<VaccinationStatus> vaccinationStatus = vaccinationStatusService.getVaccinationStatussById(vaccineId);
-//		model.addAttribute("vacchilddetailslist", vaccinationStatus);
-//		List<Child> childs = childServices.findById(vaccinationStatus.get());
-//		return "list-childs-vaccinestatus";
-//	}
+	public String listChildbyVaccine(@RequestParam("vId") int vaccineId, Model model) {
+		
+		Vaccine vac = vaccineServices.getVaccinesById(vaccineId);
+		model.addAttribute("getVaccine", vac);
+		List<VaccinationStatus>  vaccinationStatus = vaccinationStatusService.getChildrenListByVacId(vaccineId);
+		model.addAttribute("childvacdetailslist", vaccinationStatus);
+		return "list-childs-vaccinestatus";
+	}
 	@GetMapping("/detailsofchildvaccine")
 	public String detailsOfChildVaccine() {
 		return "childrenlistvaccine";
 	}
 
-	@GetMapping("/childrenlistvaccine")
+	@GetMapping("/childrenvaccinelist")
 	public String listOfVaccinebyChildren(@RequestParam("cid") int childId, Model model) {
 		Child child = childServices.findById(childId);
 		model.addAttribute("chilinfo", child);
 		List<VaccinationStatus> vaccinesByChild = vaccinationStatusService.getVaccineListByChildId(childId);
-		Iterator<VaccinationStatus> itr = vaccinesByChild.iterator();
-		while (itr.hasNext()) {
-			VaccinationStatus vs = itr.next();
-			System.out.println("[debug] : VaccinationStatusController.listOfVaccinebyChildren : " + vs.getVaccineId());
-			System.out.println("[debug] : VaccinationStatusController.listOfVaccinebyChildren : "
-					+ vs.getVaccine().getVaccineName());
-//			List<Vaccine> vaccine= add(vs.getVaccine().getVaccineName());
-//			model.addAttribute("vname",vaccine);
-			String name = vs.getVaccine().getVaccineName();
-		}
-
-//		model.addAllAttributes("vaccinestatus", vaccinesByChild);
-//3 table show join
+		model.addAttribute("vaccinestatus", vaccinesByChild);
 		return "child-vaccinestatus-detail-form";
 	}
 

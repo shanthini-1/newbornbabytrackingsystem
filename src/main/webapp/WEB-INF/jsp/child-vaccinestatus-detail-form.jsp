@@ -108,7 +108,7 @@
 						<tr>
 						<td>${vac.childId}</td>
 							<td>${vac.vaccineId}</td>
-							<td>${vname}</td>
+							<td>${vac.vaccine.vaccineName}</td>
 							<td>${vac.dateOfVaccination}</td>
 							<td>${vac.vaccinatedStatus}</td>
 							<td>${vac.hospitalId}</td>

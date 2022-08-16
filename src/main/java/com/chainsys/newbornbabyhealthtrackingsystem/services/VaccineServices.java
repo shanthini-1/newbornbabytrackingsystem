@@ -31,8 +31,7 @@ public class VaccineServices {
 	}
 	
 	public List<Vaccine> getVaccines() {
-		List<Vaccine> vaccList = vacRepo.findAll();
-		return vaccList;
+		return vacRepo.findAll();
 	}
 
 	public Vaccine getVaccinesById(int id) {
