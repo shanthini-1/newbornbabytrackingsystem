@@ -1,6 +1,6 @@
- /**
- * 
- */
+/**
+* 
+*/
 package com.chainsys.newbornbabyhealthtrackingsystem.repository;
 
 import java.util.List;
@@ -15,22 +15,22 @@ import com.chainsys.newbornbabyhealthtrackingsystem.model.Child;
  *
  */
 @Repository
-public interface ChildRepository extends JpaRepository<Child, Integer>{
+public interface ChildRepository extends JpaRepository<Child, Integer> {
 	Child findById(int id);
 
-	Child save(Child childld);
+	@Override
+	<S extends Child> S save(S childld);
 
 	void deleteById(int childId);
 
 	List<Child> findAll();
 
 	List<Child> findAllByHospitalId(int hospitalId);
+
 	List<Child> findAllByDoctorId(Integer doctorId);
 
-	List<Child> findAllByFatherIdAndMotherId(Integer fatherId,Integer motherId);
-	List<Child> findAllByGuardianId(Integer guardianId);
-	
+	List<Child> findAllByFatherIdAndMotherId(Integer fatherId, Integer motherId);
 
-//	List<Child> findById(VaccinationStatus vaccinationStatus);
+	List<Child> findAllByGuardianId(Integer guardianId);
+
 }
- 

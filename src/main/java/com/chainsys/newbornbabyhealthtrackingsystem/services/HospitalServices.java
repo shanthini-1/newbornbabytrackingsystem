@@ -19,8 +19,6 @@ import com.chainsys.newbornbabyhealthtrackingsystem.repository.HospitalRepositor
 public class HospitalServices {
 	@Autowired
 	private HospitalRepository hospitalRepo;
-	@Autowired
-	private PersonServices personServices;
 
 	public List<Hospital> getHospitals() {
 		return hospitalRepo.findAll();

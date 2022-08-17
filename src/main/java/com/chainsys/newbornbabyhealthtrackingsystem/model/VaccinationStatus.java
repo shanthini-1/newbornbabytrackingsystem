@@ -12,6 +12,14 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.ChildVaccineCompositeTable;
 
@@ -29,19 +37,38 @@ public class VaccinationStatus {
 	@Id
 	@Column(name = "CHILD_ID")
 	private int childId;
+	
 	@Id
 	@Column(name = "VACCINE_ID")
 	private int vaccineId;
+	
+	@NotNull(message = "*Date of vaccination date can not be null")
+	@PastOrPresent(message = "*Date of vaccination must be on or before today")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "DTAE_OF_VACCINATION")
 	private Date dateOfVaccination;
+	
+	@NotNull(message = "Vaccination Status should not be null")
+	@Size(min = 3,max = 20,message = "*Vaccination Status should have size of 3-20 characters")
+	@Pattern(regexp = "^[A-Za-z ]+[A-Za-z ]{3,20}$" , message = "*Vaccination status should match given pattern")
 	@Column(name = "VACCINATED_STATUS")
 	private String vaccinatedStatus;
+	
 	@Column(name = "HOSPITAL_ID")
 	private int hospitalId;
+	
 	@Column(name = "ATTENDER_ID")
 	private long attenderId;
+	
+	@Digits(integer = 6,fraction = 3,message = "*Weigth can be null")
+	@Positive(message = "weight can not be negative")
+	@Pattern(regexp = "^([0-9]*+\\.?[0-9]*|\\.[0-9]+)$",message = "*Weight should match required pattern")
 	@Column(name = "BABY_WEIGHT")
 	private double babyWeight;
+	
+	@Digits(integer = 6,fraction = 3,message = "Birth Weigth can be null")
+	@Positive(message = "weight can not be negative")
+	@Pattern(regexp = "^([0-9]*+\\.?[0-9]*|\\.[0-9]+)$",message = "*Birth weight should match required pattern")
 	@Column(name = "BABY_HEIGHT")
 	private double babyHeight;
 
@@ -136,5 +163,24 @@ public class VaccinationStatus {
 		return String.format("%L,%d,%s,%s,%L,%d,%2f,%2f", childId, vaccineId, dateOfVaccination, vaccinatedStatus,
 				hospitalId, attenderId, babyWeight, babyHeight);
 	}
+	public boolean equals(Object obj) {
+		boolean result = false;
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass())
+			return false;
+		Class<? extends Object> c1 = obj.getClass();
+		if (c1 == this.getClass()) {
+			VaccinationStatus other = (VaccinationStatus) obj;
+			if (other.hashCode() == this.hashCode()) {
+				result = true;
+			}
+		}
+		return result;
+	}
 
+	public int hashCode() {
+		return this.childId+this.vaccineId;
+	}
 }

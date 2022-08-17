@@ -7,6 +7,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 /**
  * @author shan3102
@@ -18,16 +25,42 @@ public class Vaccine {
 	@Id
 	@Column(name = "VACCINE_ID")
 	private int vaccineId;
+	
+	@Max(50)
+	@Min(0)
+	@Positive(message = "*Month to vaccinate count can not negative")
+	@Digits(integer = 2 ,fraction = 0, message = "*Month to vaccinate should match given pattern")
 	@Column(name = "MONTH_TO_VACCINATE")
 	private int week;
+	
+	@NotNull(message = "*Name should not be null")
+	@Size(min = 3,max = 25,message = "*Name should have size of 3-25 characters")
+	@Pattern(regexp = "^[A-Za-z]+[A-Za-z ]{3,25}$" , message = "*Name should match given pattern")
 	@Column(name = "VACCINE_NAME")
 	private String vaccineName;
+	
+	@NotNull(message = "*Vaccination Description should not be null")
+	@Size(min =3,max=150,message = "*Vaccine Description should match required length")
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+-=()])(?=\\S+$).{8,25}$",message = "*Vaccination Description should match given pattern")
 	@Column(name = "VAC_DESCRIPTION")
 	private String vacDescription;
+
+	@Max(99)
+	@Min(0)
+	@Positive(message = "*Dosage count can not negative")
+	@Digits(integer = 2 ,fraction = 0, message = "*Dosage should match given pattern")
 	@Column(name = "DOSAGE")
 	private int dosage;
+	
+	@NotNull(message = "*Suggestion should not be null")
+	@Size(min = 3,max = 25,message = "*Suggestion should have size of 3-25 characters")
+	@Pattern(regexp = "^[A-Za-z ]+[A-Za-z ]{3,20}$" , message = "*Suggestion should match given pattern")
 	@Column(name = "SUGGESTION")
 	private String suggestion;
+	
+	@Digits(integer = 9,fraction = 2,message = "*Price can be null")
+	@Positive(message = "*Price can not be negative")
+	@Pattern(regexp = "^([0-9]*+\\.?[0-9]*|\\.[0-9]+)$",message = "*price should match required pattern")
 	@Column(name = "VACCINE_PRICE")
 	private float vaccinePrice;
 
@@ -93,4 +126,26 @@ public class Vaccine {
 	public String toString() {
 		return String.format("%d, %d, %s, %s, %d, %s, %2f",vaccineId,week,vaccineName, vacDescription,dosage,suggestion,vaccinePrice);
 	}
+	
+	public boolean equals(Object obj) {
+		boolean result = false;
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass())
+			return false;
+		Class<? extends Object> c1 = obj.getClass();
+		if (c1 == this.getClass()) {
+			Vaccine other = (Vaccine) obj;
+			if (other.hashCode() == this.hashCode()) {
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	public int hashCode() {
+		return this.vaccineId;
+	}
+
 }

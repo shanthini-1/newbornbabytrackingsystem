@@ -17,7 +17,7 @@ import com.chainsys.newbornbabyhealthtrackingsystem.model.LocationCode;
 public interface LocationCodeRepository extends CrudRepository<LocationCode, Integer> {
 	LocationCode findByPinCode(int locCode);
 
-	LocationCode save(LocationCode locCode);
+	<S extends LocationCode> S save(S locCode);
 
 	void deleteById(int locCode);
 

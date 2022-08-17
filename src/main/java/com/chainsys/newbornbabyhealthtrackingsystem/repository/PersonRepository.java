@@ -22,5 +22,5 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 
 	List<Person> findAllByPinCode(int pincode);
 
-	Person save(Person prsn);
+	<S extends Person> S save(S person);
 }

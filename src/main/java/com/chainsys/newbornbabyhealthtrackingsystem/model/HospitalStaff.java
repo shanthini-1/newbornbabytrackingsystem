@@ -6,14 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.HospitalStaffPerson;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * @author shan3102
@@ -25,18 +25,20 @@ import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.HospitalStaffP
 @Entity
 @Table(name = "HOSPITAL_STAFF")
 public class HospitalStaff {
-
-	@Column(name = "HOSPITAL_ID")
-	private int hospitalId;
+	
 	@Id
 	@Column(name = "STAFF_ID")
 	private Integer staffId;
+	
+	@Column(name = "HOSPITAL_ID")
+	private int hospitalId;
+
+	@NotNull(message = "*Staff role cannot be null")
+	@Size(min = 3, max = 25, message = "*Required length does not match")
+	@Pattern(regexp = "^[A-Za-z]+[A-Za-z ]*$", message = "*please enter valid Staff role ")
 	@Column(name = "STAFF_ROLE")
 	private String staffRole;
-
-	/*
-	 * unidirectional fetch staff from person table
-	 */
+	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "STAFF_ID", nullable = false, insertable = false, updatable = false)
 	private Person hosStaff;
@@ -90,6 +92,28 @@ public class HospitalStaff {
 
 	public String toString() {
 		return String.format("%d,%d,%s", hospitalId, staffId, staffRole);
+	}
+	
+
+	public boolean equals(Object obj) {
+		boolean result = false;
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass())
+			return false;
+		Class<? extends Object> c1 = obj.getClass();
+		if (c1 == this.getClass()) {
+			HospitalStaff other = (HospitalStaff) obj;
+			if (other.hashCode() == this.hashCode()) {
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	public int hashCode() {
+		return this.staffId;
 	}
 
 }

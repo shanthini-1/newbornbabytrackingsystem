@@ -46,7 +46,7 @@ public class PersonServices {
 	public Person addPerson(Person thePerson) {
 		thePerson = personRepo.save(thePerson);
 		Login login = new Login();
-//			login.setUserId(thePerson.getUserId());
+			login.setPersonCategory(thePerson.getPersonCategory());
 			login.setEmail(thePerson.getEmail());
 			login.setRegisterationDate();
 			login.setPassWord(thePerson.getPassWord());

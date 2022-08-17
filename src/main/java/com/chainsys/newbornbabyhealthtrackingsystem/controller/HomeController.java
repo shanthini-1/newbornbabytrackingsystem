@@ -9,14 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.chainsys.newbornbabyhealthtrackingsystem.model.Login;
-import com.chainsys.newbornbabyhealthtrackingsystem.model.Person;
 import com.chainsys.newbornbabyhealthtrackingsystem.services.LoginService;
-import com.chainsys.newbornbabyhealthtrackingsystem.services.PersonServices;
 
 
 public class HomeController {
-	@Autowired 
-	private PersonServices personServices;
 	@Autowired
 	private LoginService loginService;
 	
@@ -28,8 +24,8 @@ public class HomeController {
 	}
 
 	@PostMapping("addnewuserlogin")
-	public String addPerson(@Valid @ModelAttribute("userLogin") Person thePerson ,Error error) {
-		loginService.addlogindetails(thePerson);
+	public String addNewUser(@Valid @ModelAttribute("userLogin") Login theUser ,Error error) {
+		loginService.addUser(theUser);
 		return "redirect:/user/person/listallpersons";
 	}
 

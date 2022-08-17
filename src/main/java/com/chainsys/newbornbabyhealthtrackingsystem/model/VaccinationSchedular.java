@@ -13,6 +13,9 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.chainsys.newbornbabyhealthtrackingsystem.compsitemodel.ChildVaccineCompositeTable;
 
@@ -30,9 +33,13 @@ public class VaccinationSchedular {
 	@Id
 	@Column(name="CHILD_ID")
 	private int childId;
+	
 	@Id
 	@Column(name="VACCINE_ID")
 	private int vaccineId;
+	
+	@NotNull(message = "*Date to vaccinate can not be null")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name="DATE_TO_VACCINATE")
 	private Date dateToVaccinate;
 	
@@ -79,5 +86,26 @@ public class VaccinationSchedular {
 	
 	public String toString() {
 		return String.format("%d,%d,%s", childId,vaccineId,dateToVaccinate);
+	}
+	
+	public boolean equals(Object obj) {
+		boolean result = false;
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass())
+			return false;
+		Class<? extends Object> c1 = obj.getClass();
+		if (c1 == this.getClass()) {
+			VaccinationSchedular other = (VaccinationSchedular) obj;
+			if (other.hashCode() == this.hashCode()) {
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	public int hashCode() {
+		return this.childId+this.vaccineId;
 	}
 }

@@ -18,11 +18,10 @@ import com.chainsys.newbornbabyhealthtrackingsystem.model.Vaccine;
 public interface VaccineRepository extends CrudRepository<Vaccine, Integer> {
 	Vaccine findByVaccineId(int vaccineId);
 
-	Vaccine save(Vaccine vac);
+	<S extends Vaccine> S save(S vac);
 
 	void deleteById(int vacId);
 
 	List<Vaccine> findAll();
 
-//	List<Vaccine> findByVaccineId(VaccinationStatus vaccinationStatus);
 }

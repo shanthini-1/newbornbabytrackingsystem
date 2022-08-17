@@ -16,7 +16,7 @@ import com.chainsys.newbornbabyhealthtrackingsystem.model.VaccinationSchedular;
 public interface VaccinationSchedularRepository extends CrudRepository<VaccinationSchedular, Integer> {
 	List<VaccinationSchedular> findByChildId(int childId);
 	List<VaccinationSchedular> findByVaccineId(int vaccineId);
-	VaccinationSchedular save(VaccinationSchedular vaccineSchedule);
+	<S extends VaccinationSchedular>S save(S vaccineSchedule);
 
 	void deleteById(int childId);
 

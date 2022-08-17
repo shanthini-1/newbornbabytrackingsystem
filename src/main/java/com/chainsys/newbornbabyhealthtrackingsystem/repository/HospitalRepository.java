@@ -15,8 +15,8 @@ import com.chainsys.newbornbabyhealthtrackingsystem.model.Hospital;
  */
 public interface HospitalRepository extends CrudRepository<Hospital, Integer> {
 	Hospital findByHospitalId(int hosId);
-
-	Hospital save(Hospital hos);
+	@Override
+	<S extends Hospital>S save(S hospital);
 
 	void deleteById(int hosId);
 

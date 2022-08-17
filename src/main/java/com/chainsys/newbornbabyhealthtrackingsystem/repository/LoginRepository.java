@@ -6,6 +6,6 @@ import com.chainsys.newbornbabyhealthtrackingsystem.model.Login;
 
 public interface LoginRepository extends CrudRepository<Login, Integer> {
 
-	public Login save(Login login);
+	<S extends Login> S save(S login);
 
 }

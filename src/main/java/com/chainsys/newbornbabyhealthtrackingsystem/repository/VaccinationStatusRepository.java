@@ -18,7 +18,7 @@ import com.chainsys.newbornbabyhealthtrackingsystem.model.VaccinationStatus;
 public interface VaccinationStatusRepository extends CrudRepository<VaccinationStatus, ChildVaccineCompositeTable> {
 	Optional<VaccinationStatus> findById(ChildVaccineCompositeTable compId);
 
-	VaccinationStatus save(VaccinationStatus vaccineStatus);
+	<S extends VaccinationStatus> S save(S vaccineStatus);
 
 	void deleteById(ChildVaccineCompositeTable compId);
 
