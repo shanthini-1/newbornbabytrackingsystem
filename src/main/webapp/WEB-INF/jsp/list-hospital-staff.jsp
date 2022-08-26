@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>List of Hospital Staff</title>
@@ -11,6 +11,7 @@
 	<div id="root">
 		<div id="hospitalstaffform">
 			<table>
+				<caption>Hospital Staff</caption>
 				<thead>
 					<tr>
 						<th>Hospital Id</th>

@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>List of Location</title>
@@ -11,6 +11,7 @@
 	<div id="root">
 		<div id="loctionform">
 			<table>
+				<caption>location</caption>
 				<thead>
 					<tr>
 						<th>Pin Code</th>

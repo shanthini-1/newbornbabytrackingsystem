@@ -252,7 +252,7 @@ button:hover {
 	</nav>
 	<div id="root">
 		<div>
-			<h1>User Registeration</h1>
+			<h1 class=".logotitle">User Registeration</h1>
 		</div>
 		<div id="form">
 			<addpersonform:form action="addpersons" method="post"

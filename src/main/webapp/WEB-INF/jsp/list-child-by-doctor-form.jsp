@@ -2,13 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>list children by doctor</title>
 </head>
 <body>
-	<form:form action="/admin/child/listchildbydoctorid" method="get">
+	<form:form action="/children/listchildbydoctorid" method="get">
 		<h3>list child by Doctor id</h3>
 		<label>enter id </label>
 		<input type="text" placeholder="doctor id" name="doctorId">

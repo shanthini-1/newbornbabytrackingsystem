@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>List of Child</title>
@@ -11,6 +11,7 @@
 		<div id="root">
 		<div id="vacform">
 			<table>
+				<caption>vaccination status of child</caption>
 				<thead>
 					<tr>
 						<th>Child Id</th>

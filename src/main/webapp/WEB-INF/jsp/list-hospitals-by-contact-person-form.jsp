@@ -4,7 +4,7 @@
 	uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>contact person with Hospital By Id</title>
@@ -81,6 +81,7 @@
 	<div id="root">
 		<div id="form">
 			<table>
+				<caption>Hospital</caption>
 				<thead>
 					<tr>
 						<th>Hospital Id</th>

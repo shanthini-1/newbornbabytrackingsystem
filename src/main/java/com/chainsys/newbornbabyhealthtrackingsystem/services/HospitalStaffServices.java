@@ -38,17 +38,5 @@ public class HospitalStaffServices {
 		hospitalStaffRepo.deleteById(staffId);
 	}
 	
-//	
-//	@Transactional
-//	public ContactPersonDTO getStaffFromPerson(Integer staffId) {
-//		Person person =getStaffById(staffId);
-//		ContactPersonDTO hosStaffDto= new ContactPersonDTO();
-//		hosStaffDto.setContactPerson(person);
-//		return hosStaffDto;
-//	}
-
-//	private Person getStaffById(Integer staffId) {
-//		return personRepo.findByUserId(staffId);
-//	}
 
 }
